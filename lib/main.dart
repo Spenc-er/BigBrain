@@ -10,6 +10,7 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:game_template/src/game_selection/game_selection.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
@@ -124,9 +125,9 @@ class MyApp extends StatelessWidget {
                 path: 'play',
                 pageBuilder: (context, state) => buildMyTransition<void>(
                       key: ValueKey('play'),
-                      child: const LevelSelectionScreen(
-                        key: Key('level selection'),
-                      ),
+                      child: const GameSelectionScreen(
+                          // key: Key('level selection'),
+                          ),
                       color: context.watch<Palette>().backgroundLevelSelection,
                     ),
                 routes: [
@@ -146,6 +147,16 @@ class MyApp extends StatelessWidget {
                         color: context.watch<Palette>().backgroundPlaySession,
                       );
                     },
+                  ),
+                  GoRoute(
+                    path: 'lvl',
+                    pageBuilder: (context, state) => buildMyTransition<void>(
+                      key: ValueKey('lvl'),
+                      child: const LevelSelectionScreen(
+                        key: Key('level selection'),
+                      ),
+                      color: context.watch<Palette>().backgroundLevelSelection,
+                    ),
                   ),
                   GoRoute(
                     path: 'won',

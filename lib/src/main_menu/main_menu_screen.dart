@@ -28,16 +28,13 @@ class MainMenuScreen extends StatelessWidget {
       body: ResponsiveScreen(
         mainAreaProminence: 0.45,
         squarishMainArea: Center(
-          child: Transform.rotate(
-            angle: -0.1,
-            child: const Text(
-              'Flutter Game Template!',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Permanent Marker',
-                fontSize: 55,
-                height: 1,
-              ),
+          child: Align(
+            // bigbrainlowresolutionlogowhite (39:11)
+            alignment: Alignment.topCenter,
+            child: SizedBox(
+              width: 184,
+              height: 162,
+              child: Image.asset('assets/images/logo.png'),
             ),
           ),
         ),
