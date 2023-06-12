@@ -41,35 +41,49 @@ class MainMenuScreen extends StatelessWidget {
         rectangularMenuArea: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            FilledButton(
-              onPressed: () {
-                audioController.playSfx(SfxType.buttonTap);
-                GoRouter.of(context).go('/play');
-              },
-              child: const Text('Play'),
-            ),
-            _gap,
-            if (gamesServicesController != null) ...[
-              _hideUntilReady(
-                ready: gamesServicesController.signedIn,
-                child: FilledButton(
-                  onPressed: () => gamesServicesController.showAchievements(),
-                  child: const Text('Achievements'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                FilledButton(
+                  onPressed: () => GoRouter.of(context).push('/settings'),
+                  child: const Text('Settings'),
                 ),
-              ),
-              _gap,
-              _hideUntilReady(
-                ready: gamesServicesController.signedIn,
-                child: FilledButton(
-                  onPressed: () => gamesServicesController.showLeaderboard(),
-                  child: const Text('Leaderboard'),
+                FilledButton(
+                  onPressed: () {
+                    audioController.playSfx(SfxType.buttonTap);
+                    GoRouter.of(context).go('/play');
+                  },
+                  child: const Text('Play'),
                 ),
-              ),
-              _gap,
-            ],
-            FilledButton(
-              onPressed: () => GoRouter.of(context).push('/settings'),
-              child: const Text('Settings'),
+                   FilledButton(
+                  onPressed: () {
+                    audioController.playSfx(SfxType.buttonTap);
+                    GoRouter.of(context).go('/profile');
+                  },
+                  child: const Text('Profile'),
+                ),
+                _gap,
+                if (gamesServicesController != null) ...[
+                  _hideUntilReady(
+                    ready: gamesServicesController.signedIn,
+                    child: FilledButton(
+                      onPressed: () =>
+                          gamesServicesController.showAchievements(),
+                      child: const Text('Achievements'),
+                    ),
+                  ),
+                  _gap,
+                  _hideUntilReady(
+                    ready: gamesServicesController.signedIn,
+                    child: FilledButton(
+                      onPressed: () =>
+                          gamesServicesController.showLeaderboard(),
+                      child: const Text('Leaderboard'),
+                    ),
+                  ),
+                  _gap,
+                ],
+              ],
             ),
             _gap,
             Padding(

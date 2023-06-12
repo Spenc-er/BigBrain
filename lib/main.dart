@@ -11,6 +11,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:game_template/src/game_selection/game_selection.dart';
+import 'package:game_template/src/profile/profile.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
@@ -121,6 +122,15 @@ class MyApp extends StatelessWidget {
           builder: (context, state) =>
               const MainMenuScreen(key: Key('main menu')),
           routes: [
+             GoRoute(
+                    path: 'profile',
+                    pageBuilder: (context, state) => buildMyTransition<void>(
+                      key: ValueKey('profile'),
+                      child:  Profile(
+                      ),
+                      color: context.watch<Palette>().backgroundLevelSelection,
+                    ),
+                  ),
             GoRoute(
                 path: 'play',
                 pageBuilder: (context, state) => buildMyTransition<void>(
