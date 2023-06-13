@@ -89,39 +89,62 @@ class _ProfileState extends State<Profile> {
                   style: TextStyle(color: Colors.white),
                   cursorColor: Colors.purple,
                   decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                     labelStyle: TextStyle(color: Colors.white),
                     enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide(width: 3, color: Colors.purple),
                     ), //
                     focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide(width: 3, color: Colors.purple),
                     ), // ,
                     border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
                         borderSide: BorderSide(color: Colors.purple)),
                     hintText: 'Enter Email',
+                    hintStyle: TextStyle(color: Colors.white),
                     labelText: 'Email',
-                    prefixIcon: const Icon(
-                      Icons.email,
-                      color: Colors.white,
+                    prefixIcon: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.purple,
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 19),
+                      child: const Icon(
+                        Icons.email,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
                 DropdownMenu<Gender>(
                   width: 353,
                   textStyle: TextStyle(color: Colors.white),
-                  leadingIcon: const Icon(
-                    Icons.wc,
-                    color: Colors.white,
+                  leadingIcon: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.purple,
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 19),
+                    child: const Icon(
+                      Icons.wc,
+                      color: Colors.white,
+                    ),
                   ),
                   inputDecorationTheme: InputDecorationTheme(
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                     labelStyle: TextStyle(color: Colors.white),
                     enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide(width: 3, color: Colors.purple),
                     ), //
                     focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide(width: 3, color: Colors.purple),
                     ), // ,
                     border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
                         borderSide: BorderSide(color: Colors.purple)),
                   ),
                   controller: gender,
@@ -139,19 +162,32 @@ class _ProfileState extends State<Profile> {
                   controller: age,
                   cursorColor: Colors.purple,
                   decoration: InputDecoration(
+                    hintText: 'Enter Age',
+                    hintStyle: TextStyle(color: Colors.white),
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                     labelStyle: TextStyle(color: Colors.white),
                     enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide(width: 3, color: Colors.purple),
                     ), //
                     focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide(width: 3, color: Colors.purple),
                     ), // ,
                     border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
                         borderSide: BorderSide(color: Colors.purple)),
                     labelText: 'Age',
-                    prefixIcon: const Icon(
-                      Icons.equalizer,
-                      color: Colors.white,
+                    prefixIcon: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.purple,
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 19),
+                      child: const Icon(
+                        Icons.elderly,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -161,23 +197,36 @@ class _ProfileState extends State<Profile> {
                   controller: height,
                   cursorColor: Colors.purple,
                   decoration: InputDecoration(
+                     hintText: 'Enter Height',
+                    hintStyle: TextStyle(color: Colors.white),
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
                       labelStyle: TextStyle(color: Colors.white),
                       enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
                         borderSide: BorderSide(width: 3, color: Colors.purple),
                       ), //
                       focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
                         borderSide: BorderSide(width: 3, color: Colors.purple),
                       ), // ,
                       border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
                           borderSide: BorderSide(color: Colors.purple)),
                       labelText: 'Height',
-                      prefixIcon: const Icon(
-                        Icons.height,
-                        color: Colors.white,
+                      prefixIcon: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.purple,
+                        ),
+                        padding: EdgeInsets.symmetric(vertical: 19),
+                        child: const Icon(
+                          Icons.height,
+                          color: Colors.white,
+                        ),
                       ),
                       prefixText: ' ',
                       suffixText: 'cm',
-                      suffixStyle: const TextStyle(color: Colors.purple)),
+                      suffixStyle: const TextStyle(color: Colors.white)),
                 ),
                 TextField(
                   keyboardType: TextInputType.number,
@@ -185,40 +234,64 @@ class _ProfileState extends State<Profile> {
                   controller: weight,
                   cursorColor: Colors.purple,
                   decoration: InputDecoration(
+                     hintText: 'Enter Weight',
+                    hintStyle: TextStyle(color: Colors.white),
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
                       labelStyle: TextStyle(color: Colors.white),
                       enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
                         borderSide: BorderSide(width: 3, color: Colors.purple),
                       ), //
                       focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
                         borderSide: BorderSide(width: 3, color: Colors.purple),
                       ), // ,
                       border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
                           borderSide: BorderSide(color: Colors.purple)),
                       labelText: 'Weight',
-                      prefixIcon: const Icon(
-                        Icons.monitor_weight,
-                        color: Colors.white,
+                      prefixIcon: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.purple,
+                        ),
+                        padding: EdgeInsets.symmetric(vertical: 19),
+                        child: const Icon(
+                          Icons.monitor_weight,
+                          color: Colors.white,
+                        ),
                       ),
                       prefixText: ' ',
                       suffixText: 'Kg',
-                      suffixStyle: const TextStyle(color: Colors.purple)),
+                      suffixStyle: const TextStyle(color: Colors.white)),
                 ),
                 DropdownMenu<Education>(
                   width: 353,
                   textStyle: TextStyle(color: Colors.white),
-                  leadingIcon: const Icon(
-                    Icons.person,
-                    color: Colors.white,
+                  leadingIcon: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.purple,
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 19),
+                    child: const Icon(
+                      Icons.book,
+                      color: Colors.white,
+                    ),
                   ),
                   inputDecorationTheme: InputDecorationTheme(
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                     labelStyle: TextStyle(color: Colors.white),
                     enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide(width: 3, color: Colors.purple),
                     ), //
                     focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide(width: 3, color: Colors.purple),
                     ), // ,
                     border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
                         borderSide: BorderSide(color: Colors.purple)),
                   ),
                   controller: edu,
@@ -236,19 +309,30 @@ class _ProfileState extends State<Profile> {
                   controller: countryName,
                   cursorColor: Colors.purple,
                   decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                     labelStyle: TextStyle(color: Colors.white),
                     enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide(width: 3, color: Colors.purple),
                     ), //
                     focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide(width: 3, color: Colors.purple),
                     ), // ,
                     border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
                         borderSide: BorderSide(color: Colors.purple)),
                     labelText: 'Country',
-                    prefixIcon: const Icon(
-                      Icons.public,
-                      color: Colors.white,
+                    prefixIcon: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.purple,
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 19),
+                      child: const Icon(
+                        Icons.public,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
