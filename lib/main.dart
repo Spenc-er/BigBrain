@@ -10,6 +10,7 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:game_template/pages/numbers_memory/numbers_memory_page.dart';
 import 'package:game_template/src/game_selection/game_selection.dart';
 import 'package:game_template/src/profile/profile.dart';
 import 'package:go_router/go_router.dart';
@@ -75,7 +76,7 @@ void guardedMain() {
   // TODO: When ready, uncomment the following lines to enable integrations.
   //       Read the README for more info on each integration.
 
-  AdsController? adsController;
+
   // if (!kIsWeb && (Platform.isIOS || Platform.isAndroid)) {
   //   /// Prepare the google_mobile_ads plugin so that the first ad loads
   //   /// faster. This can be done later or with a delay if startup
@@ -106,7 +107,6 @@ void guardedMain() {
       settingsPersistence: LocalStorageSettingsPersistence(),
       playerProgressPersistence: LocalStoragePlayerProgressPersistence(),
       inAppPurchaseController: inAppPurchaseController,
-      adsController: adsController,
       gamesServicesController: gamesServicesController,
     ),
   );
@@ -150,8 +150,7 @@ class MyApp extends StatelessWidget {
                           .singleWhere((e) => e.number == levelNumber);
                       return buildMyTransition<void>(
                         key: ValueKey('level'),
-                        child: PlaySessionScreen(
-                          level,
+                        child: NumbersMemory(
                           key: const Key('play session'),
                         ),
                         color: context.watch<Palette>().backgroundPlaySession,
@@ -212,13 +211,11 @@ class MyApp extends StatelessWidget {
 
   final InAppPurchaseController? inAppPurchaseController;
 
-  final AdsController? adsController;
 
   const MyApp({
     required this.playerProgressPersistence,
     required this.settingsPersistence,
     required this.inAppPurchaseController,
-    required this.adsController,
     required this.gamesServicesController,
     super.key,
   });
@@ -237,7 +234,6 @@ class MyApp extends StatelessWidget {
           ),
           Provider<GamesServicesController?>.value(
               value: gamesServicesController),
-          Provider<AdsController?>.value(value: adsController),
           ChangeNotifierProvider<InAppPurchaseController?>.value(
               value: inAppPurchaseController),
           Provider<SettingsController>(

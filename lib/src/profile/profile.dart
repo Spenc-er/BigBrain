@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:country_picker/country_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -14,25 +15,54 @@ class _ProfileState extends State<Profile> {
   TextEditingController weight = TextEditingController();
   TextEditingController edu = TextEditingController();
   TextEditingController countryName = TextEditingController();
+
+  Gender selectedGender = Gender.male;
+  Education selectedEducation = Education.e1;
   @override
   void initState() {
-    email.text = "";
-    gender.text = "";
-    age.text = "";
-    height.text = "";
-    weight.text = "";
-    edu.text = "";
-    countryName.text = "";
     super.initState();
+    loadProfileData();
+  }
+
+  Future<void> saveProfileData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('email', email.text);
+    prefs.setString('gender', selectedGender.gender);
+    prefs.setString('age', age.text);
+    prefs.setString('height', height.text);
+    prefs.setString('weight', weight.text);
+    prefs.setString('education', selectedEducation.education);
+    prefs.setString('country', countryName.text);
+  }
+
+Future<void> loadProfileData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      email.text = prefs.getString('email') ?? '';
+      String genderValue = prefs.getString('gender') ?? '';
+      selectedGender = Gender.values.firstWhere(
+          (gender) => gender.gender == genderValue,
+          orElse: () => Gender.male);
+      age.text = prefs.getString('age') ?? '';
+      height.text = prefs.getString('height') ?? '';
+      weight.text = prefs.getString('weight') ?? '';
+      String educationValue = prefs.getString('education') ?? '';
+      selectedEducation = Education.values.firstWhere(
+          (education) => education.education == educationValue,
+          orElse: () => Education.e1);
+      countryName.text = prefs.getString('country') ?? '';
+      gender.text = selectedGender.label;
+      edu.text = selectedEducation.label; // Set the initial value for the gender field
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<DropdownMenuEntry<Gender>> genderEntries =
-        <DropdownMenuEntry<Gender>>[];
+    final List<DropdownMenuEntry<Gender?>> genderEntries =
+        <DropdownMenuEntry<Gender?>>[];
     for (final Gender color in Gender.values) {
       genderEntries.add(
-        DropdownMenuEntry<Gender>(
+        DropdownMenuEntry<Gender?>(
           value: color,
           label: color.label,
         ),
@@ -49,9 +79,6 @@ class _ProfileState extends State<Profile> {
       );
     }
 
-    Gender? selectedGender;
-    Education? selectedEducation;
-    // String countryName;
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
@@ -118,7 +145,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                 ),
-                DropdownMenu<Gender>(
+                DropdownMenu<Gender?>(
                   width: 353,
                   textStyle: TextStyle(color: Colors.white),
                   leadingIcon: Container(
@@ -152,7 +179,7 @@ class _ProfileState extends State<Profile> {
                   dropdownMenuEntries: genderEntries,
                   onSelected: (Gender? gender) {
                     setState(() {
-                      selectedGender = gender;
+                      selectedGender = gender!;
                     });
                   },
                 ),
@@ -197,8 +224,8 @@ class _ProfileState extends State<Profile> {
                   controller: height,
                   cursorColor: Colors.purple,
                   decoration: InputDecoration(
-                     hintText: 'Enter Height',
-                    hintStyle: TextStyle(color: Colors.white),
+                      hintText: 'Enter Height',
+                      hintStyle: TextStyle(color: Colors.white),
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       labelStyle: TextStyle(color: Colors.white),
                       enabledBorder: OutlineInputBorder(
@@ -234,8 +261,8 @@ class _ProfileState extends State<Profile> {
                   controller: weight,
                   cursorColor: Colors.purple,
                   decoration: InputDecoration(
-                     hintText: 'Enter Weight',
-                    hintStyle: TextStyle(color: Colors.white),
+                      hintText: 'Enter Weight',
+                      hintStyle: TextStyle(color: Colors.white),
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       labelStyle: TextStyle(color: Colors.white),
                       enabledBorder: OutlineInputBorder(
@@ -299,7 +326,7 @@ class _ProfileState extends State<Profile> {
                   dropdownMenuEntries: educationEntries,
                   onSelected: (Education? education) {
                     setState(() {
-                      selectedEducation = education;
+                      selectedEducation = education!;
                     });
                   },
                 ),
@@ -377,6 +404,26 @@ class _ProfileState extends State<Profile> {
                     );
                   },
                   child: const Text('Select Your Country',
+                      style: TextStyle(color: Colors.white)),
+                ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.purple),
+                  ),
+                  onPressed: () {
+                    saveProfileData();
+                    final snackBar = SnackBar(
+                      content: const Text('Profile is saved successfully!'),
+                      backgroundColor: (Colors.black12),
+                      action: SnackBarAction(
+                        label: 'dismiss',
+                        onPressed: () {},
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  },
+                  child: const Text('Save Profile',
                       style: TextStyle(color: Colors.white)),
                 ),
               ],

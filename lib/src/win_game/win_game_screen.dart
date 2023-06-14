@@ -23,9 +23,7 @@ class WinGameScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final adsControllerAvailable = context.watch<AdsController?>() != null;
-    final adsRemoved =
-        context.watch<InAppPurchaseController?>()?.adRemoval.active ?? false;
+   
     final palette = context.watch<Palette>();
 
     const gap = SizedBox(height: 10);
@@ -36,13 +34,7 @@ class WinGameScreen extends StatelessWidget {
         squarishMainArea: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if (adsControllerAvailable && !adsRemoved) ...[
-              const Expanded(
-                child: Center(
-                  child: BannerAdWidget(),
-                ),
-              ),
-            ],
+           
             gap,
             const Center(
               child: Text(
