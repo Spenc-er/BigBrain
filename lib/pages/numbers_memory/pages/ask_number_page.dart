@@ -85,8 +85,7 @@ class _AskNumberState extends State<AskNumber> {
   Widget _submitButton() {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        fixedSize: Size(Phone.width(context) / 3, 40),
-        primary: Color.fromRGBO(244, 180, 0, 1),
+        fixedSize: Size(Phone.width(context) / 3, 40), backgroundColor: Color.fromRGBO(244, 180, 0, 1),
       ),
       onPressed: () => submit(),
       child: Text(

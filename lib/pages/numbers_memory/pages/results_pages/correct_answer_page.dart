@@ -70,8 +70,7 @@ class _CorrectAnswerState extends State<CorrectAnswer> {
   Widget nextButton() {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        fixedSize: Size(Phone.width(context) / 4, 40),
-        primary: Color.fromRGBO(244, 180, 0, 1),
+        fixedSize: Size(Phone.width(context) / 4, 40), backgroundColor: Color.fromRGBO(244, 180, 0, 1),
       ),
       onPressed: () {
         c.valueController.incrementLevel();

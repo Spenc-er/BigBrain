@@ -31,8 +31,7 @@ class _CustomElevatedButtonState extends State<CustomElevatedButton> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        fixedSize: widget.size,
-        primary: widget.primary,
+        fixedSize: widget.size, backgroundColor: widget.primary,
         side: BorderSide(color: widget.borderSideColor, width: widget.borderSideWidth),
         elevation: 0,
         shape: RoundedRectangleBorder(
