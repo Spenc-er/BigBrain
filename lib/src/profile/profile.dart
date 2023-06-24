@@ -35,7 +35,7 @@ class _ProfileState extends State<Profile> {
     prefs.setString('country', countryName.text);
   }
 
-Future<void> loadProfileData() async {
+  Future<void> loadProfileData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       email.text = prefs.getString('email') ?? '';
@@ -52,7 +52,8 @@ Future<void> loadProfileData() async {
           orElse: () => Education.e1);
       countryName.text = prefs.getString('country') ?? '';
       gender.text = selectedGender.label;
-      edu.text = selectedEducation.label; // Set the initial value for the gender field
+      edu.text =
+          selectedEducation.label; // Set the initial value for the gender field
     });
   }
 
@@ -87,37 +88,26 @@ Future<void> loadProfileData() async {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // TextField(
-                //   controller: password,
-                //   cursorColor: Colors.purple,
-                //   decoration: InputDecoration(
-                //       labelStyle: TextStyle(color: Colors.white),
-                //       enabledBorder: OutlineInputBorder(
-                //         borderSide: BorderSide(width: 3, color: Colors.purple),
-                //       ), //
-                //       focusedBorder: OutlineInputBorder(
-                //         borderSide: BorderSide(width: 3, color: Colors.purple),
-                //       ), // ,
-                //       border: OutlineInputBorder(
-                //           borderSide: BorderSide(color: Colors.purple)),
-                //       hintText: 'Tell us about yourself',
-                //       helperText: 'Keep it short, this is just a demo.',
-                //       labelText: 'Life story',
-                //       prefixIcon: const Icon(
-                //         Icons.person,
-                //         color: Colors.white,
-                //       ),
-                //       prefixText: ' ',
-                //       suffixText: 'USD',
-                //       suffixStyle: const TextStyle(color: Colors.green)),
-                // ),
+                Text(
+                  'YOUR PROFILE',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30),
+                ),
                 TextField(
                   controller: email,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17),
                   cursorColor: Colors.purple,
                   decoration: InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.never,
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide(width: 3, color: Colors.purple),
@@ -130,7 +120,10 @@ Future<void> loadProfileData() async {
                         borderRadius: BorderRadius.all(Radius.circular(8.0)),
                         borderSide: BorderSide(color: Colors.purple)),
                     hintText: 'Enter Email',
-                    hintStyle: TextStyle(color: Colors.white),
+                    hintStyle: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17),
                     labelText: 'Email',
                     prefixIcon: Container(
                       decoration: BoxDecoration(
@@ -147,7 +140,10 @@ Future<void> loadProfileData() async {
                 ),
                 DropdownMenu<Gender?>(
                   width: 353,
-                  textStyle: TextStyle(color: Colors.white),
+                  textStyle: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17),
                   leadingIcon: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
@@ -161,7 +157,10 @@ Future<void> loadProfileData() async {
                   ),
                   inputDecorationTheme: InputDecorationTheme(
                     floatingLabelBehavior: FloatingLabelBehavior.never,
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide(width: 3, color: Colors.purple),
@@ -185,14 +184,23 @@ Future<void> loadProfileData() async {
                 ),
                 TextField(
                   keyboardType: TextInputType.number,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17),
                   controller: age,
                   cursorColor: Colors.purple,
                   decoration: InputDecoration(
                     hintText: 'Enter Age',
-                    hintStyle: TextStyle(color: Colors.white),
+                    hintStyle: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide(width: 3, color: Colors.purple),
@@ -220,14 +228,23 @@ Future<void> loadProfileData() async {
                 ),
                 TextField(
                   keyboardType: TextInputType.number,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17),
                   controller: height,
                   cursorColor: Colors.purple,
                   decoration: InputDecoration(
                       hintText: 'Enter Height',
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17),
                       floatingLabelBehavior: FloatingLabelBehavior.never,
-                      labelStyle: TextStyle(color: Colors.white),
+                      labelStyle: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8.0)),
                         borderSide: BorderSide(width: 3, color: Colors.purple),
@@ -253,18 +270,30 @@ Future<void> loadProfileData() async {
                       ),
                       prefixText: ' ',
                       suffixText: 'cm',
-                      suffixStyle: const TextStyle(color: Colors.white)),
+                      suffixStyle: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17)),
                 ),
                 TextField(
                   keyboardType: TextInputType.number,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17),
                   controller: weight,
                   cursorColor: Colors.purple,
                   decoration: InputDecoration(
                       hintText: 'Enter Weight',
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17),
                       floatingLabelBehavior: FloatingLabelBehavior.never,
-                      labelStyle: TextStyle(color: Colors.white),
+                      labelStyle: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8.0)),
                         borderSide: BorderSide(width: 3, color: Colors.purple),
@@ -290,11 +319,17 @@ Future<void> loadProfileData() async {
                       ),
                       prefixText: ' ',
                       suffixText: 'Kg',
-                      suffixStyle: const TextStyle(color: Colors.white)),
+                      suffixStyle: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17)),
                 ),
                 DropdownMenu<Education>(
                   width: 353,
-                  textStyle: TextStyle(color: Colors.white),
+                  textStyle: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17),
                   leadingIcon: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
@@ -308,7 +343,10 @@ Future<void> loadProfileData() async {
                   ),
                   inputDecorationTheme: InputDecorationTheme(
                     floatingLabelBehavior: FloatingLabelBehavior.never,
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide(width: 3, color: Colors.purple),
@@ -331,13 +369,19 @@ Future<void> loadProfileData() async {
                   },
                 ),
                 TextField(
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17),
                   readOnly: true,
                   controller: countryName,
                   cursorColor: Colors.purple,
                   decoration: InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.never,
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       borderSide: BorderSide(width: 3, color: Colors.purple),
@@ -404,7 +448,8 @@ Future<void> loadProfileData() async {
                     );
                   },
                   child: const Text('Select Your Country',
-                      style: TextStyle(color: Colors.white)),
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold)),
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
@@ -424,7 +469,8 @@ Future<void> loadProfileData() async {
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   },
                   child: const Text('Save Profile',
-                      style: TextStyle(color: Colors.white)),
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold)),
                 ),
               ],
             ),

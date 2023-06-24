@@ -11,6 +11,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:game_template/pages/numbers_memory/numbers_memory_page.dart';
+import 'package:game_template/pages/numbers_memory/pages/survey.dart';
 import 'package:game_template/src/game_selection/game_selection.dart';
 import 'package:game_template/src/profile/profile.dart';
 import 'package:go_router/go_router.dart';
@@ -74,7 +75,6 @@ void guardedMain() {
   // TODO: When ready, uncomment the following lines to enable integrations.
   //       Read the README for more info on each integration.
 
-
   // if (!kIsWeb && (Platform.isIOS || Platform.isAndroid)) {
   //   /// Prepare the google_mobile_ads plugin so that the first ad loads
   //   /// faster. This can be done later or with a delay if startup
@@ -120,24 +120,21 @@ class MyApp extends StatelessWidget {
           builder: (context, state) =>
               const MainMenuScreen(key: Key('main menu')),
           routes: [
-             GoRoute(
-                    path: 'profile',
-                    pageBuilder: (context, state) => buildMyTransition<void>(
-                      key: ValueKey('profile'),
-                      child:  Profile(
-                      ),
-                      color: context.watch<Palette>().backgroundLevelSelection,
-                    ),
-                  ),
+            GoRoute(
+              path: 'profile',
+              pageBuilder: (context, state) => buildMyTransition<void>(
+                  key: ValueKey('profile'),
+                  child: Profile(),
+                  color: Color.fromARGB(255, 181, 115, 193)),
+            ),
             GoRoute(
                 path: 'play',
                 pageBuilder: (context, state) => buildMyTransition<void>(
-                      key: ValueKey('play'),
-                      child: const GameSelectionScreen(
-                          // key: Key('level selection'),
-                          ),
-                      color: context.watch<Palette>().backgroundLevelSelection,
-                    ),
+                    key: ValueKey('play'),
+                    child: const GameSelectionScreen(
+                        // key: Key('level selection'),
+                        ),
+                    color: Color.fromARGB(255, 181, 115, 193)),
                 routes: [
                   GoRoute(
                     path: 'session/:level',
@@ -208,7 +205,6 @@ class MyApp extends StatelessWidget {
   final GamesServicesController? gamesServicesController;
 
   final InAppPurchaseController? inAppPurchaseController;
-
 
   const MyApp({
     required this.playerProgressPersistence,

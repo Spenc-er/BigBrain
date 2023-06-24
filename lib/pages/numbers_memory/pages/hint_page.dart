@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:game_template/pages/numbers_memory/controllers/store_controller.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import '/helpers/colors.dart';
 import '/helpers/phone_properties.dart';
 import '/pages/numbers_memory/controllers/numbers_memory_controller.dart';
@@ -13,6 +15,12 @@ class HintPage extends StatefulWidget {
 
 class _HintPageState extends State<HintPage> {
   late BuildContext context;
+  late StoreController controller;
+
+  void initState() {
+    controller = Get.put(StoreController());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext buildContext) {
@@ -71,14 +79,16 @@ class _HintPageState extends State<HintPage> {
 
   Widget startButton() {
     return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        fixedSize: Size(Phone.width(context) / 2, 40),
-        backgroundColor: Color.fromRGBO(244, 180, 0, 1),
-      ),
-      child: Text("Start"),
-      onPressed: () =>
-          Get.find<NumbersMemoryController>().selectShowNumberPage(),
-    );
+        style: ElevatedButton.styleFrom(
+          fixedSize: Size(Phone.width(context) / 2, 40),
+          backgroundColor: Color.fromRGBO(244, 180, 0, 1),
+        ),
+        child: Text("Start"),
+        onPressed: () => {
+              controller.updateTime(
+                  DateFormat('yyyy-MM-ddTHH:mm:ss').format(DateTime.now())),
+              Get.find<NumbersMemoryController>().selectShowNumberPage()
+            });
   }
 
   Widget backButton() {

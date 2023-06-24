@@ -71,9 +71,7 @@ class _GameSelectionScreenState extends State<GameSelectionScreen> {
                   Container(
                     margin: EdgeInsets.only(bottom: 40),
                     child: ElevatedButton(
-                      onPressed: () {
-                        // Action for button 1
-                      },
+                      onPressed: null,
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
@@ -118,9 +116,7 @@ class _GameSelectionScreenState extends State<GameSelectionScreen> {
                   Container(
                     margin: EdgeInsets.only(bottom: 40),
                     child: ElevatedButton(
-                      onPressed: () {
-                        // Action for button 1
-                      },
+                      onPressed: null,
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
@@ -159,9 +155,7 @@ class _GameSelectionScreenState extends State<GameSelectionScreen> {
                   Container(
                     margin: EdgeInsets.only(bottom: 40),
                     child: ElevatedButton(
-                      onPressed: () {
-                        // Action for button 1
-                      },
+                      onPressed: null,
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
@@ -206,9 +200,7 @@ class _GameSelectionScreenState extends State<GameSelectionScreen> {
                   Container(
                     margin: EdgeInsets.only(bottom: 40),
                     child: ElevatedButton(
-                      onPressed: () {
-                        // Action for button 1
-                      },
+                      onPressed: null,
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(

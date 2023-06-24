@@ -89,7 +89,7 @@ class WrongDetecetor {
             lineThrough ? TextDecoration.lineThrough : TextDecoration.none,
         color: Colors.white,
         fontFamily: null,
-        fontSize: 14,
+        fontSize: 25,
       ),
     );
   }
