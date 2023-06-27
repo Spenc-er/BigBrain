@@ -147,6 +147,7 @@ class MyApp extends StatelessWidget {
                         key: ValueKey('level'),
                         child: NumbersMemory(
                           key: const Key('play session'),
+                          lvl:level.number
                         ),
                         color: context.watch<Palette>().backgroundPlaySession,
                       );

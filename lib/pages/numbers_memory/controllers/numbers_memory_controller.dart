@@ -38,9 +38,9 @@ class NumbersMemoryController extends GetxController {
   
   void surveyPage() => page.value = 5;
 
-  reset() {
+  reset(lvl) {
     page.value = 0;
-    valueController.reset();
+    valueController.reset(lvl);
     protectedFocusLost = false;
     onShowNumberPage = false;
   }

@@ -7,7 +7,8 @@ import '/pages/numbers_memory/controllers/number_memory_value_controller.dart';
 import 'controllers/numbers_memory_controller.dart';
 
 class NumbersMemory extends StatefulWidget {
-  NumbersMemory({Key? key}) : super(key: key);
+  final int lvl;
+  NumbersMemory({Key? key, required this.lvl}) : super(key: key);
 
   @override
   _NumbersMemoryState createState() => _NumbersMemoryState();
@@ -20,14 +21,27 @@ class _NumbersMemoryState extends State<NumbersMemory> {
   @override
   void initState() {
     // Phone.closeStatusBar();
+
+    var level = widget.lvl == 2
+        ? 7
+        : widget.lvl == 3
+            ? 12
+            : 1;
     controller = Get.put(NumbersMemoryController());
-    valueController = Get.put(NumbersMemoryValueController());
+    valueController = Get.put(NumbersMemoryValueController(level));
     super.initState();
   }
 
   @override
   void dispose() {
-    controller.reset();
+    var level = widget.lvl == 2
+        ? 7
+        : widget.lvl == 3
+            ? 12
+            : 1;
+
+    controller.reset(level);
+    Get.deleteAll();
     super.dispose();
   }
 

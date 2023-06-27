@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
@@ -20,6 +21,11 @@ class LevelSelectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final playerProgress = context.watch<PlayerProgress>();
+
+    Future<void> saveDifficulty(level) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('difficulty', level);
+    }
 
     return Scaffold(
       backgroundColor: palette.backgroundLevelSelection,
@@ -47,7 +53,7 @@ class LevelSelectionScreen extends StatelessWidget {
                       onTap: () {
                         final audioController = context.read<AudioController>();
                         audioController.playSfx(SfxType.buttonTap);
-
+                        saveDifficulty(level.number);
                         GoRouter.of(context)
                             .go('/play/session/${level.number}');
                       },

@@ -3,17 +3,24 @@ import 'package:get/get.dart';
 import '/pages/numbers_memory/controllers/numbers_memory_controller.dart';
 
 class NumbersMemoryValueController extends NumbersMemoryController {
-  var levelCounter = 1;
+  var levelCounter;
   String number = "";
 
   String usersAnswer = "";
+  var resetLevel;
 
   int get levelSecond => levelCounter < 8
-      ? (sqrt(levelCounter * 4) * 1000).toInt()
-      : (sqrt(levelCounter * 8) * 1000).toInt();
+      ? (sqrt(levelCounter * 2) * 1000).toInt()
+      : (levelCounter < 11
+          ? (sqrt(levelCounter * 5) * 1000).toInt()
+          : (sqrt(levelCounter * 8) * 1000).toInt());
 
   incrementLevel() => levelCounter++;
 
+  NumbersMemoryValueController(int initialLevelCounter) {
+    levelCounter = initialLevelCounter;
+    resetLevel = initialLevelCounter;
+  }
   String numberGenerator() {
     number = "";
     var random = Random();
@@ -35,9 +42,10 @@ class NumbersMemoryValueController extends NumbersMemoryController {
     }
   }
 
-  reset() {
+  reset(lvl) {
     number = "";
     usersAnswer = "";
-    levelCounter = 1;
+    levelCounter = lvl;
+
   }
 }

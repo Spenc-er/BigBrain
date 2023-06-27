@@ -4,7 +4,10 @@ import 'package:game_template/src/games_services/score.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../src/player_progress/player_progress.dart';
+import '../../numbers_memory_page.dart';
 import '/helpers/colors.dart';
 import '/helpers/phone_properties.dart';
 import '/pages/numbers_memory/controllers/number_memory_value_controller.dart';
@@ -33,18 +36,25 @@ class _WrongAnswerState extends State<WrongAnswer> {
     vC = c.valueController;
     saveGameUsedTime();
   }
-
+  void dispose() {
+    Get.delete<NumbersMemory>();
+    super.dispose();
+  }
   Future<void> saveGameUsedTime() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Score saveStore = new Score(1, 10,
         DateTime.now().difference(DateTime.parse(store.startTime.value)));
     prefs.setString('game_lvl', vC.levelCounter.toString());
     prefs.setString('game_time', saveStore.formattedTime);
+    final playerProgress = context.read<PlayerProgress>();
+    var lvl = vC.levelCounter > 11 ? 2 : (vC.levelCounter > 6 ? 1 : 0);
+    playerProgress.setLevelReached(lvl);
   }
 
   @override
   Widget build(BuildContext buildContext) {
     context = buildContext;
+
     Score score = new Score(1, 10,
         DateTime.now().difference(DateTime.parse(store.startTime.value)));
     _initState();
@@ -159,7 +169,7 @@ class _WrongAnswerState extends State<WrongAnswer> {
         onPressed: () {
           controller.updateTime(
               DateFormat('yyyy-MM-ddTHH:mm:ss').format(DateTime.now()));
-          c.valueController.reset();
+          c.valueController.reset(c.valueController.resetLevel);
           c.selectShowNumberPage();
         },
         child: Text(
