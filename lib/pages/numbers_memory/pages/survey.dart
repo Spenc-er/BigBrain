@@ -1,6 +1,15 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/src/material/tooltip.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../helpers/phone_properties.dart';
+import '../controllers/store_controller.dart';
 
 class Survey extends StatefulWidget {
   const Survey({Key? key}) : super(key: key);
@@ -14,9 +23,95 @@ class _SurveyState extends State<Survey> {
   double sleepQualityScore = 50;
   double averageSportHours = 0;
   double averageScreenHours = 0;
+  late StoreController controller;
+  late String email;
+  late String gender;
+  late String age;
+  late String height;
+  late String weight;
+  late String education;
+  late String country;
+  late String game_difficulty;
+  late String game_level;
+  late String game_time;
+  bool _isButtonDisabled = false;
+  _initState() {
+    controller = Get.find<StoreController>();
+    loadProfileData();
+  }
+
+  Future<void> loadProfileData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      email = prefs.getString('email') ?? '';
+      gender = prefs.getString('gender') ?? '';
+      age = prefs.getString('age') ?? '';
+      height = prefs.getString('height') ?? '';
+      weight = prefs.getString('weight') ?? '';
+      education = prefs.getString('education') ?? '';
+      country = prefs.getString('country') ?? '';
+      game_difficulty = prefs.getString('difficulty') ?? '';
+      game_level = prefs.getString('game_lvl') ?? '';
+      game_time = prefs.getString('game_time') ?? '';
+    });
+  }
+
+  setJson() {
+    return {
+      "email": email,
+      "age": age,
+      "bmi": (double.parse(weight) / pow(double.parse(height) / 100, 2))
+          .toStringAsFixed(2),
+      "education": education,
+      "gender": gender,
+      "gameData": {
+        "game_difficulty": game_difficulty,
+        "game_level": game_level,
+        "game_time": game_time,
+        "mood": selectedOption,
+        "name": "Number Memory",
+        "screen_hour": averageScreenHours,
+        "sleep_quality": sleepQualityScore,
+        "sport_hour": averageSportHours
+      }
+    };
+  }
+
+  void _handleButtonPress() {
+    if (!_isButtonDisabled) {
+      setState(() {
+        _isButtonDisabled = true;
+      });
+
+      // Call your createSurvey() method and show the Snackbar
+      controller.createSurvey(setJson()).then((_) {
+        // Show success Snackbar
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text('Survey has been successfully submitted.'),
+            backgroundColor: Colors.green,
+            action: SnackBarAction(
+              label: 'dismiss',
+              onPressed: () {},
+            ),
+          ),
+        );
+      }).catchError((error) {
+        // Show error Snackbar
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text('Something went wrong, please try again.'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    _initState();
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -28,6 +123,7 @@ class _SurveyState extends State<Survey> {
             children: [
               Column(
                 children: [
+                  _backButton(),
                   Center(
                     child: Text(
                       'SURVEY',
@@ -182,7 +278,7 @@ class _SurveyState extends State<Survey> {
                     children: [
                       Expanded(
                         child: Text(
-                             textAlign: TextAlign.center,
+                          textAlign: TextAlign.center,
                           'Average Screen Hour(s) Per Day',
                           style: TextStyle(
                             color: Colors.white,
@@ -223,26 +319,17 @@ class _SurveyState extends State<Survey> {
                   ),
                 ],
               ),
-               ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.purple),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    _isButtonDisabled ? Colors.grey : Colors.purple,
                   ),
-                  onPressed: () {
-                    final snackBar = SnackBar(
-                      content: const Text('Survey is successfully submitted,Thank you!'),
-                      backgroundColor: (Colors.black12),
-                      action: SnackBarAction(
-                        label: 'dismiss',
-                        onPressed: () {},
-                      ),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  },
-                  child: const Text('Submit',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold)),
                 ),
+                onPressed: _isButtonDisabled ? null : _handleButtonPress,
+                child: const Text('Submit',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold)),
+              ),
             ],
           ),
         ),
@@ -273,4 +360,16 @@ class _SurveyState extends State<Survey> {
       ],
     );
   }
+
+  Widget _backButton() => Container(
+        width: Phone.width(context),
+        alignment: Alignment.centerRight,
+        child: IconButton(
+          onPressed: () => {GoRouter.of(context).go('/')},
+          icon: Icon(
+            Icons.close,
+            color: Colors.white,
+          ),
+        ),
+      );
 }

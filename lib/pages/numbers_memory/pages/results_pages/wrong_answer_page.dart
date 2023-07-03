@@ -32,7 +32,7 @@ class _WrongAnswerState extends State<WrongAnswer> {
 
   _initState() {
     c = Get.find();
-    controller = Get.put(StoreController());
+    controller = Get.find<StoreController>();
     vC = c.valueController;
     saveGameUsedTime();
   }
@@ -66,10 +66,7 @@ class _WrongAnswerState extends State<WrongAnswer> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Flexible(
-              flex: 1,
-              child: _backButton(),
-            ),
+         
             Flexible(
               flex: 9,
               child: Container(
@@ -110,7 +107,16 @@ class _WrongAnswerState extends State<WrongAnswer> {
                         ),
                         child: Text("Submit Result"),
                         onPressed: () =>
-                            {Get.find<NumbersMemoryController>().surveyPage()})
+                            {Get.find<NumbersMemoryController>().surveyPage()}),
+                                   SizedBox(height: 20),
+                                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size(Phone.width(context) / 2, 40),
+                          backgroundColor: Color.fromRGBO(244, 180, 0, 1),
+                        ),
+                        child: Text("Home"),
+                        onPressed: () =>
+                      {GoRouter.of(context).go('/')}),
                   ],
                 ),
               ),
@@ -123,11 +129,11 @@ class _WrongAnswerState extends State<WrongAnswer> {
 
   Widget _backButton() => Container(
         width: Phone.width(context),
-        alignment: Alignment.centerLeft,
+        alignment: Alignment.centerRight,
         child: IconButton(
           onPressed: () => {GoRouter.of(context).go('/')},
           icon: Icon(
-            Icons.arrow_back,
+            Icons.close,
             color: Colors.white,
           ),
         ),

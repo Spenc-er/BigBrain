@@ -53,7 +53,7 @@ class LevelSelectionScreen extends StatelessWidget {
                       onTap: () {
                         final audioController = context.read<AudioController>();
                         audioController.playSfx(SfxType.buttonTap);
-                        saveDifficulty(level.number);
+                        saveDifficulty(level.level);
                         GoRouter.of(context)
                             .go('/play/session/${level.number}');
                       },

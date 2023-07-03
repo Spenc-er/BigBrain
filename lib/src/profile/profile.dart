@@ -31,7 +31,7 @@ class _ProfileState extends State<Profile> {
     prefs.setString('age', age.text);
     prefs.setString('height', height.text);
     prefs.setString('weight', weight.text);
-    prefs.setString('education', selectedEducation.education);
+    prefs.setString('education', selectedEducation.label);
     prefs.setString('country', countryName.text);
   }
 

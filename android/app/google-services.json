@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "776782980237",
+    "project_id": "bigbran-62b09",
+    "storage_bucket": "bigbran-62b09.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776782980237:android:19f0c2ded51bb366bdaec4",
+        "android_client_info": {
+          "package_name": "com.example.game_template"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "776782980237-d442ebq1q6hpk4jv9hg0vmlgbe4tuuul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsDgA8Yj7fgZxbKn-cbN2x4Nnl3n6aEHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "776782980237-d442ebq1q6hpk4jv9hg0vmlgbe4tuuul.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
