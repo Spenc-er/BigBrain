@@ -11,6 +11,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:game_template/pages/numbers_memory/controllers/share_pref.dart';
 import 'package:game_template/pages/numbers_memory/numbers_memory_page.dart';
 import 'package:game_template/pages/numbers_memory/pages/survey.dart';
 import 'package:game_template/src/game_selection/game_selection.dart';
@@ -46,6 +47,7 @@ Future<void> main() async {
   // See the 'Crashlytics' section of the main README.md file for details.
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await AppSharedPref.initSessionManager();
   FirebaseCrashlytics? crashlytics;
   // if (!kIsWeb && (Platform.isIOS || Platform.isAndroid)) {
   //   try {
@@ -66,7 +68,7 @@ Future<void> main() async {
 }
 
 /// Without logging and crash reporting, this would be `void main()`.
-void guardedMain() {
+Future<void> guardedMain() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   _log.info('Going full screen');

@@ -5,6 +5,7 @@ import '/helpers/phone_properties.dart';
 import '/pages/numbers_memory/controllers/number_memory_value_controller.dart';
 
 import 'controllers/numbers_memory_controller.dart';
+import 'controllers/share_pref.dart';
 
 class NumbersMemory extends StatefulWidget {
   final int lvl;
@@ -29,6 +30,8 @@ class _NumbersMemoryState extends State<NumbersMemory> {
             : 1;
     controller = Get.put(NumbersMemoryController());
     valueController = Get.put(NumbersMemoryValueController(level));
+    WidgetsFlutterBinding.ensureInitialized();
+    AppSharedPref.initSessionManager();
     super.initState();
   }
 

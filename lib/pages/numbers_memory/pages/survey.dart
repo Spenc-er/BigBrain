@@ -97,6 +97,9 @@ class _SurveyState extends State<Survey> {
           ),
         );
       }).catchError((error) {
+        setState(() {
+        _isButtonDisabled = false;
+      });
         // Show error Snackbar
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

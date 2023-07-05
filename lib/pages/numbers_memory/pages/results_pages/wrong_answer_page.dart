@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_template/pages/numbers_memory/controllers/share_pref.dart';
 import 'package:game_template/pages/numbers_memory/controllers/store_controller.dart';
 import 'package:game_template/src/games_services/score.dart';
 import 'package:get/get.dart';
@@ -36,10 +37,12 @@ class _WrongAnswerState extends State<WrongAnswer> {
     vC = c.valueController;
     saveGameUsedTime();
   }
+
   void dispose() {
     Get.delete<NumbersMemory>();
     super.dispose();
   }
+
   Future<void> saveGameUsedTime() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Score saveStore = new Score(1, 10,
@@ -54,6 +57,7 @@ class _WrongAnswerState extends State<WrongAnswer> {
   @override
   Widget build(BuildContext buildContext) {
     context = buildContext;
+    var ishow = AppSharedPref.isProfileFilled();
 
     Score score = new Score(1, 10,
         DateTime.now().difference(DateTime.parse(store.startTime.value)));
@@ -66,7 +70,6 @@ class _WrongAnswerState extends State<WrongAnswer> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-         
             Flexible(
               flex: 9,
               child: Container(
@@ -100,23 +103,42 @@ class _WrongAnswerState extends State<WrongAnswer> {
                     SizedBox(height: 20),
                     retryButton(),
                     SizedBox(height: 20),
+                    if (!ishow) ...[
+                      Tooltip(
+                       triggerMode: TooltipTriggerMode.tap,
+                        message: "Please fill in profile information.",
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              fixedSize: Size(Phone.width(context) / 2, 40),
+                              backgroundColor: Colors.grey,
+                            ),
+                            child: Text("Submit Result"),
+                            onPressed: null),
+                      ),
+                    ] else ...[
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            fixedSize: Size(Phone.width(context) / 2, 40),
+                            backgroundColor: ishow
+                                ? Color.fromRGBO(244, 180, 0, 1)
+                                : Colors.grey,
+                          ),
+                          child: Text("Submit Result"),
+                          onPressed: () => ishow
+                              ? {
+                                  Get.find<NumbersMemoryController>()
+                                      .surveyPage()
+                                }
+                              : null),
+                    ],
+                    SizedBox(height: 20),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           fixedSize: Size(Phone.width(context) / 2, 40),
                           backgroundColor: Color.fromRGBO(244, 180, 0, 1),
                         ),
-                        child: Text("Submit Result"),
-                        onPressed: () =>
-                            {Get.find<NumbersMemoryController>().surveyPage()}),
-                                   SizedBox(height: 20),
-                                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: Size(Phone.width(context) / 2, 40),
-                          backgroundColor: Color.fromRGBO(244, 180, 0, 1),
-                        ),
                         child: Text("Home"),
-                        onPressed: () =>
-                      {GoRouter.of(context).go('/')}),
+                        onPressed: () => {GoRouter.of(context).go('/')}),
                   ],
                 ),
               ),
