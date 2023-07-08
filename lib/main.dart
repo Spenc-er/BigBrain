@@ -138,7 +138,7 @@ class MyApp extends StatelessWidget {
                     child: const GameSelectionScreen(
                         // key: Key('level selection'),
                         ),
-                    color: Color.fromARGB(255, 181, 115, 193)),
+                    color: Color.fromARGB(255, 225, 179, 233)),
                 routes: [
                   GoRoute(
                     path: 'session/:level',

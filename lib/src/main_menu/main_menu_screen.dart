@@ -3,8 +3,10 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:rive/rive.dart';
 
 import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
@@ -13,20 +15,57 @@ import '../settings/settings.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
 
-class MainMenuScreen extends StatelessWidget {
+class MainMenuScreen extends StatefulWidget {
   const MainMenuScreen({super.key});
+
+  @override
+  State<MainMenuScreen> createState() => _MainMenuScreenState();
+}
+
+class _MainMenuScreenState extends State<MainMenuScreen> {
+  SMIInput<bool>? bounce;
+  SMIInput<bool>? spin;
+  Artboard? artboardButton;
+
+  void bounceAnimation() => bounce?.change(true);
+
+  @override
+  void initState() {
+    super.initState();
+    rootBundle.load('assets/images/slime1.riv').then((data) {
+      final file = RiveFile.import(data);
+      final artboard = file.mainArtboard;
+      var controller =
+          StateMachineController.fromArtboard(artboard, 'State Machine 1');
+      if (controller != null) {
+        artboard.addController(controller);
+        bounce = controller.findInput('bounce');
+        spin = controller.findInput('spin');
+      }
+      setState(() => artboardButton = artboard);
+    });
+  }
+
+  StateMachineController? controller;
+  void _onRiveInit(Artboard artboard) {
+    controller =
+        StateMachineController.fromArtboard(artboard, 'State Machine 1');
+    artboard.addController(controller!);
+
+    bounce = controller?.findInput('bounce');
+    spin = controller?.findInput('spin');
+  }
 
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
-    final gamesServicesController = context.watch<GamesServicesController?>();
     final settingsController = context.watch<SettingsController>();
     final audioController = context.watch<AudioController>();
-
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: palette.backgroundMain,
       body: ResponsiveScreen(
-        mainAreaProminence: 0.45,
+        mainAreaProminence: 0.3,
         squarishMainArea: Center(
           child: Align(
             // bigbrainlowresolutionlogowhite (39:11)
@@ -41,6 +80,23 @@ class MainMenuScreen extends StatelessWidget {
         rectangularMenuArea: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            artboardButton == null
+                ? SizedBox()
+                : GestureDetector(
+                    onTap: () => bounce?.change(true),
+                    onLongPress: () => spin?.change(true),
+                    child: SizedBox(
+                      width: size.width,
+                      height: 280,
+                      child: RiveAnimation.asset(
+                        'assets/images/slime1.riv',
+                        // stateMachines: ['State Machine 1'],
+                        // animations: const ['Idle'],
+                        onInit: (art) {
+                          _onRiveInit(art);
+                        },
+                      ),
+                    )),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -55,34 +111,13 @@ class MainMenuScreen extends StatelessWidget {
                   },
                   child: const Text('Play'),
                 ),
-                   FilledButton(
+                FilledButton(
                   onPressed: () {
                     audioController.playSfx(SfxType.buttonTap);
                     GoRouter.of(context).go('/profile');
                   },
                   child: const Text('Profile'),
                 ),
-                _gap,
-                if (gamesServicesController != null) ...[
-                  _hideUntilReady(
-                    ready: gamesServicesController.signedIn,
-                    child: FilledButton(
-                      onPressed: () =>
-                          gamesServicesController.showAchievements(),
-                      child: const Text('Achievements'),
-                    ),
-                  ),
-                  _gap,
-                  _hideUntilReady(
-                    ready: gamesServicesController.signedIn,
-                    child: FilledButton(
-                      onPressed: () =>
-                          gamesServicesController.showLeaderboard(),
-                      child: const Text('Leaderboard'),
-                    ),
-                  ),
-                  _gap,
-                ],
               ],
             ),
             _gap,
@@ -98,9 +133,7 @@ class MainMenuScreen extends StatelessWidget {
                 },
               ),
             ),
-            _gap,
             const Text('Music by Mr Smith'),
-            _gap,
           ],
         ),
       ),
