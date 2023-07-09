@@ -98,8 +98,8 @@ class _SurveyState extends State<Survey> {
         );
       }).catchError((error) {
         setState(() {
-        _isButtonDisabled = false;
-      });
+          _isButtonDisabled = false;
+        });
         // Show error Snackbar
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -126,15 +126,21 @@ class _SurveyState extends State<Survey> {
             children: [
               Column(
                 children: [
-                  _backButton(),
                   Center(
-                    child: Text(
-                      'SURVEY',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'SURVEY',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                          ),
+                        ),
+                        Spacer(),
+                        _backButton(),
+                      ],
                     ),
                   ),
                   Center(
@@ -365,14 +371,15 @@ class _SurveyState extends State<Survey> {
   }
 
   Widget _backButton() => Container(
-        width: Phone.width(context),
-        alignment: Alignment.centerRight,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.white, width: 2),
+          color: Color.fromARGB(255, 235, 170, 255),
+          shape: BoxShape.circle,
+        ),
         child: IconButton(
+          style: ButtonStyle(),
           onPressed: () => {GoRouter.of(context).go('/')},
-          icon: Icon(
-            Icons.close,
-            color: Colors.white,
-          ),
+          icon: Icon(Icons.close, color: Colors.white, size: 30),
         ),
       );
 }

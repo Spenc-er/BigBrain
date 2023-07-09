@@ -11,6 +11,7 @@ import 'package:rive/rive.dart';
 import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
 import '../games_services/games_services.dart';
+import '../player_progress/player_progress.dart';
 import '../settings/settings.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
@@ -32,6 +33,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
   @override
   void initState() {
     super.initState();
+
     rootBundle.load('assets/images/slime1.riv').then((data) {
       final file = RiveFile.import(data);
       final artboard = file.mainArtboard;
@@ -62,6 +64,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
     final settingsController = context.watch<SettingsController>();
     final audioController = context.watch<AudioController>();
     Size size = MediaQuery.of(context).size;
+    final playerProgress = context.watch<PlayerProgress>();
+    var number = playerProgress.highestLevelReached > 0 ? "1" : "0";
     return Scaffold(
       backgroundColor: palette.backgroundMain,
       body: ResponsiveScreen(
@@ -89,7 +93,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                       width: size.width,
                       height: 280,
                       child: RiveAnimation.asset(
-                        'assets/images/slime1.riv',
+                        'assets/images/slime' + number + '.riv',
                         // stateMachines: ['State Machine 1'],
                         // animations: const ['Idle'],
                         onInit: (art) {
