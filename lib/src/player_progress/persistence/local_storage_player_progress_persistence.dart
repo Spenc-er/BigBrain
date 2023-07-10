@@ -23,4 +23,16 @@ class LocalStoragePlayerProgressPersistence extends PlayerProgressPersistence {
     final prefs = await instanceFuture;
     await prefs.setInt('highestLevelReached', level);
   }
+
+  @override
+  Future<String> getPet() async {
+    final prefs = await instanceFuture;
+    return prefs.getString('pet') ?? 'egg';
+  }
+
+  @override
+  Future<void> savePet(String level) async {
+    final prefs = await instanceFuture;
+    await prefs.setString('pet', level);
+  }
 }

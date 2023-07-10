@@ -2,6 +2,8 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -66,6 +68,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
     Size size = MediaQuery.of(context).size;
     final playerProgress = context.watch<PlayerProgress>();
     var number = playerProgress.highestLevelReached > 0 ? "1" : "0";
+    var name = playerProgress.pet;
+
     return Scaffold(
       backgroundColor: palette.backgroundMain,
       body: ResponsiveScreen(
@@ -93,7 +97,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                       width: size.width,
                       height: 280,
                       child: RiveAnimation.asset(
-                        'assets/images/slime' + number + '.riv',
+                        'assets/images/' + name + number + '.riv',
                         // stateMachines: ['State Machine 1'],
                         // animations: const ['Idle'],
                         onInit: (art) {
@@ -141,29 +145,6 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
           ],
         ),
       ),
-    );
-  }
-
-  /// Prevents the game from showing game-services-related menu items
-  /// until we're sure the player is signed in.
-  ///
-  /// This normally happens immediately after game start, so players will not
-  /// see any flash. The exception is folks who decline to use Game Center
-  /// or Google Play Game Services, or who haven't yet set it up.
-  Widget _hideUntilReady({required Widget child, required Future<bool> ready}) {
-    return FutureBuilder<bool>(
-      future: ready,
-      builder: (context, snapshot) {
-        // Use Visibility here so that we have the space for the buttons
-        // ready.
-        return Visibility(
-          visible: snapshot.data ?? false,
-          maintainState: true,
-          maintainSize: true,
-          maintainAnimation: true,
-          child: child,
-        );
-      },
     );
   }
 

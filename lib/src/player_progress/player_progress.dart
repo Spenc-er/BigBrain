@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 
@@ -16,6 +17,8 @@ class PlayerProgress extends ChangeNotifier {
 
   int _highestLevelReached = 0;
 
+  String pet = 'egg';
+
   /// Creates an instance of [PlayerProgress] backed by an injected
   /// persistence [store].
   PlayerProgress(PlayerProgressPersistence store) : _store = store;
@@ -26,8 +29,11 @@ class PlayerProgress extends ChangeNotifier {
   /// Fetches the latest data from the backing persistence store.
   Future<void> getLatestFromStore() async {
     final level = await _store.getHighestLevelReached();
+    final name = await _store.getPet();
+    pet = name;
     if (level > _highestLevelReached) {
       _highestLevelReached = level;
+
       notifyListeners();
     } else if (level < _highestLevelReached) {
       await _store.saveHighestLevelReached(_highestLevelReached);
@@ -38,8 +44,10 @@ class PlayerProgress extends ChangeNotifier {
   /// playing the game for the first time.
   void reset() {
     _highestLevelReached = 0;
+    pet = 'egg';
     notifyListeners();
     _store.saveHighestLevelReached(_highestLevelReached);
+    _store.savePet(pet);
   }
 
   /// Registers [level] as reached.
@@ -48,10 +56,14 @@ class PlayerProgress extends ChangeNotifier {
   /// value and save it to the injected persistence store.
   void setLevelReached(int level) {
     if (level > _highestLevelReached) {
+      var list = ['green', 'slime','fish'];
+      var name = list[Random().nextInt(list.length)];
       _highestLevelReached = level;
+      pet = name;
       notifyListeners();
 
       unawaited(_store.saveHighestLevelReached(level));
+      unawaited(_store.savePet(pet));
     }
   }
 }
