@@ -11,9 +11,11 @@ class NumbersMemoryValueController extends NumbersMemoryController {
 
   int get levelSecond => levelCounter < 8
       ? (sqrt(levelCounter * 2) * 1000).toInt()
-      : (levelCounter < 11
+      : levelCounter < 11
           ? (sqrt(levelCounter * 5) * 1000).toInt()
-          : (sqrt(levelCounter * 8) * 1000).toInt());
+          : levelCounter < 14
+              ? (sqrt(levelCounter * 8) * 1000).toInt()
+              : (sqrt(levelCounter * 11) * 1000).toInt();
 
   incrementLevel() => levelCounter++;
 
@@ -46,6 +48,5 @@ class NumbersMemoryValueController extends NumbersMemoryController {
     number = "";
     usersAnswer = "";
     levelCounter = lvl;
-
   }
 }

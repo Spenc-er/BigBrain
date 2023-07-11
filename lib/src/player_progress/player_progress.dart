@@ -56,7 +56,7 @@ class PlayerProgress extends ChangeNotifier {
   /// value and save it to the injected persistence store.
   void setLevelReached(int level) {
     if (level > _highestLevelReached) {
-      var list = ['green', 'slime','fish'];
+      var list = ['green', 'slime','fish','jigglypuff'];
       var name = list[Random().nextInt(list.length)];
       _highestLevelReached = level;
       pet = name;
