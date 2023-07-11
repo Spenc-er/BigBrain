@@ -60,6 +60,7 @@ class PlayerProgress extends ChangeNotifier {
       var name = list[Random().nextInt(list.length)];
       _highestLevelReached = level;
       pet = name;
+      print(pet);
       notifyListeners();
 
       unawaited(_store.saveHighestLevelReached(level));

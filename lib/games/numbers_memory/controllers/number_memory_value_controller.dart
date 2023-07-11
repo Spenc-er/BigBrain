@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:get/get.dart';
-import '/pages/numbers_memory/controllers/numbers_memory_controller.dart';
+import '/games/numbers_memory/controllers/numbers_memory_controller.dart';
 
 class NumbersMemoryValueController extends NumbersMemoryController {
   var levelCounter;

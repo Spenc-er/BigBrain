@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:game_template/pages/numbers_memory/controllers/share_pref.dart';
-import 'package:game_template/pages/numbers_memory/controllers/store_controller.dart';
+import 'package:game_template/games/audio_memory/audio_memory_page.dart';
+import 'package:game_template/games/audio_memory/controllers/number_memory_value_controller.dart';
+import 'package:game_template/games/audio_memory/controllers/numbers_memory_controller.dart';
+import 'package:game_template/games/numbers_memory/controllers/share_pref.dart';
+import 'package:game_template/games/numbers_memory/controllers/store_controller.dart';
 import 'package:game_template/src/games_services/score.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -8,25 +11,23 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../src/player_progress/player_progress.dart';
-import '../../numbers_memory_page.dart';
+import '../../audio_memory_page.dart';
 import '/helpers/colors.dart';
 import '/helpers/phone_properties.dart';
-import '/pages/numbers_memory/controllers/number_memory_value_controller.dart';
-import '/pages/numbers_memory/controllers/numbers_memory_controller.dart';
 import '/widgets/text/less_futured_text.dart';
 
 import 'helpers/wrong_numbers_detecetor.dart';
 
-class WrongAnswer extends StatefulWidget {
-  WrongAnswer({Key? key}) : super(key: key);
+class WrongAnswerAudio extends StatefulWidget {
+  WrongAnswerAudio({Key? key}) : super(key: key);
 
   @override
-  State<WrongAnswer> createState() => _WrongAnswerState();
+  State<WrongAnswerAudio> createState() => _WrongAnswerAudioState();
 }
 
-class _WrongAnswerState extends State<WrongAnswer> {
-  late NumbersMemoryController c;
-  late NumbersMemoryValueController vC;
+class _WrongAnswerAudioState extends State<WrongAnswerAudio> {
+  late AudioMemoryController c;
+  late AudioMemoryValueController vC;
   var store = Get.find<StoreController>();
   late BuildContext context;
   late StoreController controller;
@@ -39,7 +40,7 @@ class _WrongAnswerState extends State<WrongAnswer> {
   }
 
   void dispose() {
-    Get.delete<NumbersMemory>();
+    Get.delete<AudioMemory>();
     super.dispose();
   }
 
@@ -126,7 +127,7 @@ class _WrongAnswerState extends State<WrongAnswer> {
                           child: Text("Submit Result"),
                           onPressed: () => ishow
                               ? {
-                                  Get.find<NumbersMemoryController>()
+                                  Get.find<AudioMemoryController>()
                                       .surveyPage()
                                 }
                               : null),

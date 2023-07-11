@@ -11,9 +11,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:game_template/pages/numbers_memory/controllers/share_pref.dart';
-import 'package:game_template/pages/numbers_memory/numbers_memory_page.dart';
-import 'package:game_template/pages/numbers_memory/pages/survey.dart';
+import 'package:game_template/games/audio_memory/audio_memory_page.dart';
+import 'package:game_template/games/numbers_memory/controllers/share_pref.dart';
+import 'package:game_template/games/numbers_memory/numbers_memory_page.dart';
+import 'package:game_template/games/numbers_memory/pages/survey.dart';
+import 'package:game_template/src/audio_level_selection/audio_level_selection_screen.dart';
 import 'package:game_template/src/game_selection/game_selection.dart';
 import 'package:game_template/src/profile/profile.dart';
 import 'package:go_router/go_router.dart';
@@ -156,10 +158,35 @@ class MyApp extends StatelessWidget {
                     },
                   ),
                   GoRoute(
+                    path: 'audio/:level',
+                    pageBuilder: (context, state) {
+                      final levelNumber =
+                          int.parse(state.pathParameters['level']!);
+                      final level = gameLevels
+                          .singleWhere((e) => e.number == levelNumber);
+                      return buildMyTransition<void>(
+                        key: ValueKey('level'),
+                        child: AudioMemory(
+                            key: const Key('play session'), lvl: level.number),
+                        color: context.watch<Palette>().backgroundPlaySession,
+                      );
+                    },
+                  ),
+                  GoRoute(
                     path: 'lvl',
                     pageBuilder: (context, state) => buildMyTransition<void>(
                       key: ValueKey('lvl'),
                       child: const LevelSelectionScreen(
+                        key: Key('level selection'),
+                      ),
+                      color: context.watch<Palette>().backgroundLevelSelection,
+                    ),
+                  ),
+                  GoRoute(
+                    path: 'audioLevel',
+                    pageBuilder: (context, state) => buildMyTransition<void>(
+                      key: ValueKey('lvl'),
+                      child: const AudioLevelSelection(
                         key: Key('level selection'),
                       ),
                       color: context.watch<Palette>().backgroundLevelSelection,

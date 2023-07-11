@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '/helpers/colors.dart';
 import '/helpers/phone_properties.dart';
-import '/pages/numbers_memory/controllers/numbers_memory_controller.dart';
-import '/pages/numbers_memory/controllers/number_memory_value_controller.dart';
+import '/games/numbers_memory/controllers/numbers_memory_controller.dart';
+import '/games/numbers_memory/controllers/number_memory_value_controller.dart';
 
 class AskNumber extends StatefulWidget {
   AskNumber({Key? key}) : super(key: key);

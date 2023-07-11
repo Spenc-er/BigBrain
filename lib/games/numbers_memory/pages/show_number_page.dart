@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '/helpers/colors.dart';
 import '/helpers/phone_properties.dart';
 import '/helpers/timer.dart';
-import '/pages/numbers_memory/controllers/numbers_memory_controller.dart';
+import '/games/numbers_memory/controllers/numbers_memory_controller.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class ShowNumber extends StatefulWidget {

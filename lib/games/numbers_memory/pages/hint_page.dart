@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:game_template/pages/numbers_memory/controllers/store_controller.dart';
+import 'package:game_template/games/numbers_memory/controllers/store_controller.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '/helpers/colors.dart';
 import '/helpers/phone_properties.dart';
-import '/pages/numbers_memory/controllers/numbers_memory_controller.dart';
+import '/games/numbers_memory/controllers/numbers_memory_controller.dart';
 
 class HintPage extends StatefulWidget {
   HintPage({Key? key}) : super(key: key);

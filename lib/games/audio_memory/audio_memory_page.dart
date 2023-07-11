@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:focus_detector/focus_detector.dart';
+import 'package:game_template/games/audio_memory/controllers/number_memory_value_controller.dart';
+import 'package:game_template/games/numbers_memory/controllers/share_pref.dart';
 import 'package:get/get.dart';
-import '/helpers/phone_properties.dart';
-import '/pages/numbers_memory/controllers/number_memory_value_controller.dart';
 
 import 'controllers/numbers_memory_controller.dart';
-import 'controllers/share_pref.dart';
 
-class NumbersMemory extends StatefulWidget {
+
+class AudioMemory extends StatefulWidget {
   final int lvl;
-  NumbersMemory({Key? key, required this.lvl}) : super(key: key);
+  AudioMemory({Key? key, required this.lvl}) : super(key: key);
 
   @override
-  _NumbersMemoryState createState() => _NumbersMemoryState();
+  _AudioMemoryState createState() => _AudioMemoryState();
 }
 
-class _NumbersMemoryState extends State<NumbersMemory> {
-  late NumbersMemoryController controller;
-  late NumbersMemoryValueController valueController;
+class _AudioMemoryState extends State<AudioMemory> {
+  late AudioMemoryController controller;
+  late AudioMemoryValueController valueController;
 
   @override
   void initState() {
@@ -28,8 +28,8 @@ class _NumbersMemoryState extends State<NumbersMemory> {
         : widget.lvl == 3
             ? 12
             : 1;
-    controller = Get.put(NumbersMemoryController());
-    valueController = Get.put(NumbersMemoryValueController(level));
+    controller = Get.put(AudioMemoryController());
+    valueController = Get.put(AudioMemoryValueController(level));
     WidgetsFlutterBinding.ensureInitialized();
     AppSharedPref.initSessionManager();
     super.initState();
