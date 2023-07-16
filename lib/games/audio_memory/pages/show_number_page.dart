@@ -1,4 +1,6 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:game_template/games/audio_memory/controllers/audio_player.dart';
 import 'package:game_template/games/audio_memory/controllers/numbers_memory_controller.dart';
 import 'package:get/get.dart';
 import '/helpers/colors.dart';
@@ -17,23 +19,34 @@ class _ShowAudioNumberState extends State<ShowAudioNumber> {
   late AudioMemoryController c;
 
   late BuildContext context;
-
+  late AudioPlayer ap;
+   late AudioSequencePlayer audioPlayer;
   initializeValues() {
     c = Get.find();
     c.onShowNumberPage = true;
+      audioPlayer = AudioSequencePlayer();
   }
 
   @override
   void dispose() {
     c.onShowNumberPage = false;
+
     super.dispose();
   }
+
+Future<void> _playAudioSequence(String sequence) async {
+  await audioPlayer.playSequence(sequence);
+}
+
 
   @override
   Widget build(BuildContext buildContext) {
     context = buildContext;
     initializeValues();
-    startLevel();
+    var num = startLevel();
+
+    _playAudioSequence(num);
+
     return Scaffold(
       backgroundColor: MyColors.myBlue,
       body: Center(
@@ -54,11 +67,12 @@ class _ShowAudioNumberState extends State<ShowAudioNumber> {
   }
 
   startLevel() {
-    c.valueController.numberGenerator();
+    var number = c.valueController.numberGenerator();
     MyTimer.startTimer(
       milliseconds: c.valueController.levelSecond,
       onFinished: () => c.selectAskNumberPage(),
     );
+    return number;
   }
 
   Widget buildProgressBar() {

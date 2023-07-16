@@ -11,7 +11,7 @@ environment:
 
 dependencies:
   percent_indicator:
-  get: 
+  get:
   flutter:
     sdk: flutter
 
@@ -37,7 +37,6 @@ dependencies:
   cloud_firestore: ^4.8.2
   rive: ^0.11.4
 dev_dependencies:
-
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: ^0.13.0
@@ -50,6 +49,7 @@ flutter:
     - assets/images/
     - assets/music/
     - assets/sfx/
+    - assets/numbers_audio/
 
   fonts:
     - family: Permanent Marker

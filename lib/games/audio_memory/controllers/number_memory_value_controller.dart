@@ -10,13 +10,7 @@ class AudioMemoryValueController extends AudioMemoryController {
   String usersAnswer = "";
   var resetLevel;
 
-  int get levelSecond => levelCounter < 8
-      ? (sqrt(levelCounter * 2) * 1000).toInt()
-      : levelCounter < 11
-          ? (sqrt(levelCounter * 5) * 1000).toInt()
-          : levelCounter < 14
-              ? (sqrt(levelCounter * 8) * 1000).toInt()
-              : (sqrt(levelCounter * 11) * 1000).toInt();
+  int get levelSecond => levelCounter*1000;
 
   incrementLevel() => levelCounter++;
 
