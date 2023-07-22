@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:game_template/games/audio_memory/controllers/audio_player.dart';
 import 'package:game_template/games/audio_memory/controllers/numbers_memory_controller.dart';
 import 'package:get/get.dart';
+import 'package:rive/rive.dart';
 import '/helpers/colors.dart';
 import '/helpers/phone_properties.dart';
 import '/helpers/timer.dart';
@@ -20,11 +21,11 @@ class _ShowAudioNumberState extends State<ShowAudioNumber> {
 
   late BuildContext context;
   late AudioPlayer ap;
-   late AudioSequencePlayer audioPlayer;
+  late AudioSequencePlayer audioPlayer;
   initializeValues() {
     c = Get.find();
     c.onShowNumberPage = true;
-      audioPlayer = AudioSequencePlayer();
+    audioPlayer = AudioSequencePlayer();
   }
 
   @override
@@ -34,10 +35,9 @@ class _ShowAudioNumberState extends State<ShowAudioNumber> {
     super.dispose();
   }
 
-Future<void> _playAudioSequence(String sequence) async {
-  await audioPlayer.playSequence(sequence);
-}
-
+  Future<void> _playAudioSequence(String sequence) async {
+    await audioPlayer.playSequence(sequence);
+  }
 
   @override
   Widget build(BuildContext buildContext) {
@@ -54,7 +54,12 @@ Future<void> _playAudioSequence(String sequence) async {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 15),
+            // Center(
+            //   child: RiveAnimation.asset(
+            //     'assets/images/mouth.riv',
+            //     animations: const ['Talking'],
+            //   ),
+            // ),
             Padding(
               padding:
                   EdgeInsets.symmetric(horizontal: Phone.width(context) / 3),
