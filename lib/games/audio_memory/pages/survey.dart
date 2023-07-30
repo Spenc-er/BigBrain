@@ -66,7 +66,7 @@ class _SurveyState extends State<Survey> {
       "gender": gender,
       "gameData": {
         "game_difficulty": game_difficulty,
-        "game_level": int.parse(game_level),
+        "game_level": game_level,
         "game_time": game_time,
         "mood": selectedOption,
         "name": "Audio Memory",
