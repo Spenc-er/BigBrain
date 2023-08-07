@@ -190,12 +190,20 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                 builder: (context, muted, child) {
                   return IconButton(
                     onPressed: () => settingsController.toggleMuted(),
-                    icon: Icon(muted ? Icons.volume_off : Icons.volume_up),
+                    icon: Icon(
+                      muted ? Icons.volume_off : Icons.volume_up,
+                      color: Colors.white,
+                    ),
                   );
                 },
               ),
             ),
-            const Text('Music by Mr Smith'),
+            Text(
+              'Music by Mr Smith',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
           ],
         ),
       ),

@@ -34,5 +34,5 @@ class Palette {
   Color get background4 => const Color(0xffffd7ff);
   Color get backgroundSettings => const Color(0xffbfc8e3);
   Color get trueWhite => const Color(0xffffffff);
-  Color get buttonColor => Color.fromARGB(255, 44, 230, 230);
+  Color get buttonColor => Color.fromRGBO(52, 168, 83, 1);
 }
