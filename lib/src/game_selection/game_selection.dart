@@ -125,7 +125,10 @@ class _GameSelectionScreenState extends State<GameSelectionScreen> {
                     Container(
                       margin: EdgeInsets.only(bottom: 40),
                       child: ElevatedButton(
-                        onPressed: null,
+                        onPressed: (){
+                          GoRouter.of(context)
+                            .go('/play/sequence/1');
+                        },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.zero,
                           shape: RoundedRectangleBorder(

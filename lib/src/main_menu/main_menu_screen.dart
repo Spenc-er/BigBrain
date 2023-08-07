@@ -108,23 +108,77 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                FilledButton(
-                  onPressed: () => GoRouter.of(context).push('/settings'),
-                  child: const Text('Settings'),
+                ClipOval(
+                  child: Material(
+                    color: Colors.white, // Change to your desired color
+                    child: InkWell(
+                      onTap: () {
+                        audioController.playSfx(SfxType.buttonTap);
+                        GoRouter.of(context).go('/settings');
+                      },
+                      child: SizedBox(
+                        width: 70, // Adjust the size as needed
+                        height: 70, // Adjust the size as needed
+                        child: Container(
+                          width: 70, // Adjust the width as needed
+                          height: 70, // Adjust the height as needed
+                          child: Icon(
+                            Icons.settings,
+                            color: palette.backgroundMain,
+                            size: 40, // Adjust the icon size as needed
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-                FilledButton(
-                  onPressed: () {
-                    audioController.playSfx(SfxType.buttonTap);
-                    GoRouter.of(context).go('/play');
-                  },
-                  child: const Text('Play'),
+                ClipOval(
+                  child: Material(
+                    color: Colors.white, // Change to your desired color
+                    child: InkWell(
+                      onTap: () {
+                        audioController.playSfx(SfxType.buttonTap);
+                        GoRouter.of(context).go('/play');
+                      },
+                      child: SizedBox(
+                        width: 100, // Adjust the size as needed
+                        height: 100, // Adjust the size as needed
+                        child: Center(
+                          child: Text(
+                            'PLAY',
+                            style: TextStyle(
+                                color: palette.backgroundMain,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-                FilledButton(
-                  onPressed: () {
-                    audioController.playSfx(SfxType.buttonTap);
-                    GoRouter.of(context).go('/profile');
-                  },
-                  child: const Text('Profile'),
+                ClipOval(
+                  child: Material(
+                    color: Colors.white, // Change to your desired color
+                    child: InkWell(
+                      onTap: () {
+                        audioController.playSfx(SfxType.buttonTap);
+                        GoRouter.of(context).go('/profile');
+                      },
+                      child: SizedBox(
+                        width: 70, // Adjust the size as needed
+                        height: 70, // Adjust the size as needed
+                        child: Container(
+                          width: 70, // Adjust the width as needed
+                          height: 70, // Adjust the height as needed
+                          child: Icon(
+                            Icons.person,
+                            color: palette.backgroundMain,
+                            size: 40, // Adjust the icon size as needed
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

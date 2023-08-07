@@ -105,25 +105,35 @@ class _WrongAnswerState extends State<WrongAnswer> {
                     SizedBox(height: 20),
                     if (!ishow) ...[
                       Tooltip(
-                       triggerMode: TooltipTriggerMode.tap,
+                        triggerMode: TooltipTriggerMode.tap,
                         message: "Please fill in profile information.",
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               fixedSize: Size(Phone.width(context) / 2, 40),
                               backgroundColor: Colors.grey,
                             ),
-                            child: Text("Submit Result"),
+                            child: Text(
+                              "SUBMIT RESULT",
+                              style: TextStyle(
+                                color: Color.fromRGBO(52, 168, 83, 1),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             onPressed: null),
                       ),
                     ] else ...[
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             fixedSize: Size(Phone.width(context) / 2, 40),
-                            backgroundColor: ishow
-                                ? Color.fromRGBO(244, 180, 0, 1)
-                                : Colors.grey,
+                            backgroundColor: ishow ? Colors.white : Colors.grey,
                           ),
-                          child: Text("Submit Result"),
+                          child: Text(
+                            "SUBMIT RESULT",
+                            style: TextStyle(
+                              color: Color.fromRGBO(52, 168, 83, 1),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                           onPressed: () => ishow
                               ? {
                                   Get.find<NumbersMemoryController>()
@@ -135,9 +145,15 @@ class _WrongAnswerState extends State<WrongAnswer> {
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           fixedSize: Size(Phone.width(context) / 2, 40),
-                          backgroundColor: Color.fromRGBO(244, 180, 0, 1),
+                          backgroundColor: Colors.white,
                         ),
-                        child: Text("Home"),
+                        child: Text(
+                          "HOME",
+                          style: TextStyle(
+                            color: Color.fromRGBO(52, 168, 83, 1),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                         onPressed: () => {GoRouter.of(context).go('/')}),
                   ],
                 ),
@@ -163,7 +179,7 @@ class _WrongAnswerState extends State<WrongAnswer> {
 
   Text _numberText() => LessText.lessFuturedText(
         text: 'Number',
-        color: Colors.grey.shade400,
+        color:Colors.white,
       );
 
   Text _showNumberText(String number) => LessText.lessFuturedText(
@@ -175,7 +191,7 @@ class _WrongAnswerState extends State<WrongAnswer> {
 
   Text _yourAnswerText() => LessText.lessFuturedText(
         text: 'Your Answer',
-        color: Colors.grey.shade400,
+        color:Colors.white,
       );
 
   Row _showYourAnswerText(String answer, String userAnswer) => WrongDetecetor(
@@ -192,7 +208,7 @@ class _WrongAnswerState extends State<WrongAnswer> {
   Widget retryButton() => ElevatedButton(
         style: ElevatedButton.styleFrom(
           fixedSize: Size(Phone.width(context) / 4, 40),
-          backgroundColor: Color.fromRGBO(244, 180, 0, 1),
+          backgroundColor: Colors.white,
         ),
         onPressed: () {
           controller.updateTime(
@@ -201,7 +217,11 @@ class _WrongAnswerState extends State<WrongAnswer> {
           c.selectShowNumberPage();
         },
         child: Text(
-          'Retry',
+          'RETRY',
+          style: TextStyle(
+            color: Color.fromRGBO(52, 168, 83, 1),
+            fontWeight: FontWeight.bold,
+          ),
           textAlign: TextAlign.center,
         ),
       );

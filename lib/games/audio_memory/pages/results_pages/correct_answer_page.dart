@@ -30,7 +30,7 @@ class _CorrectAnswerAudioState extends State<CorrectAnswerAudio> {
           children: [
             LessText.lessFuturedText(
               text: 'Number',
-              color: Colors.grey.shade400,
+              color: Colors.white,
             ),
             SizedBox(height: 10),
             LessText.lessFuturedText(
@@ -42,7 +42,7 @@ class _CorrectAnswerAudioState extends State<CorrectAnswerAudio> {
             SizedBox(height: 20),
             LessText.lessFuturedText(
               text: 'Your Answer',
-              color: Colors.grey.shade400,
+              color: Colors.white,
             ),
             SizedBox(height: 10),
             LessText.lessFuturedText(
@@ -54,7 +54,7 @@ class _CorrectAnswerAudioState extends State<CorrectAnswerAudio> {
             SizedBox(height: 30),
             LessText.lessFuturedText(
               text: 'Level ${c.valueController.levelCounter}',
-              color: Colors.green.shade400,
+              color: Color(0xffE4FF78),
               fontSize: 50,
             ),
             SizedBox(
@@ -70,7 +70,8 @@ class _CorrectAnswerAudioState extends State<CorrectAnswerAudio> {
   Widget nextButton() {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        fixedSize: Size(Phone.width(context) / 4, 40), backgroundColor: Color.fromRGBO(244, 180, 0, 1),
+        fixedSize: Size(Phone.width(context) / 4, 40),
+        backgroundColor: Colors.white,
       ),
       onPressed: () {
         c.valueController.incrementLevel();
@@ -78,6 +79,10 @@ class _CorrectAnswerAudioState extends State<CorrectAnswerAudio> {
       },
       child: Text(
         'Next',
+        style: TextStyle(
+          color: Color.fromRGBO(52, 168, 83, 1),
+          fontWeight: FontWeight.bold,
+        ),
         textAlign: TextAlign.center,
       ),
     );

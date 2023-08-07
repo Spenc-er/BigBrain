@@ -30,8 +30,9 @@ class Palette {
   Color get ink => const Color(0xee352b42);
   Color get backgroundMain => Color.fromARGB(255, 235, 170, 255);
   Color get backgroundLevelSelection => const Color(0xffa2dcc7);
-  Color get backgroundPlaySession => const Color(0xffffebb5);
+  Color get backgroundPlaySession => Color.fromARGB(255, 133, 216, 185);
   Color get background4 => const Color(0xffffd7ff);
   Color get backgroundSettings => const Color(0xffbfc8e3);
   Color get trueWhite => const Color(0xffffffff);
+  Color get buttonColor => Color.fromARGB(255, 44, 230, 230);
 }

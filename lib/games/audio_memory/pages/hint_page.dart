@@ -6,7 +6,6 @@ import '../controllers/numbers_memory_controller.dart';
 import '/helpers/colors.dart';
 import '/helpers/phone_properties.dart';
 
-
 class HintPage extends StatefulWidget {
   HintPage({Key? key}) : super(key: key);
 
@@ -82,9 +81,15 @@ class _HintPageState extends State<HintPage> {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
           fixedSize: Size(Phone.width(context) / 2, 40),
-          backgroundColor: Color.fromRGBO(244, 180, 0, 1),
+          backgroundColor: Colors.white,
         ),
-        child: Text("Start"),
+        child: Text(
+          "START",
+          style: TextStyle(
+            color: Color.fromRGBO(52, 168, 83, 1),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         onPressed: () => {
               controller.updateTime(
                   DateFormat('yyyy-MM-ddTHH:mm:ss').format(DateTime.now())),

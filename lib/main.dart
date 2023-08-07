@@ -14,6 +14,7 @@ import 'package:flutter/services.dart';
 import 'package:game_template/games/audio_memory/audio_memory_page.dart';
 import 'package:game_template/games/numbers_memory/controllers/share_pref.dart';
 import 'package:game_template/games/numbers_memory/numbers_memory_page.dart';
+import 'package:game_template/games/sequence_memory/sequence_memory_page.dart';
 import 'package:game_template/games/numbers_memory/pages/survey.dart';
 import 'package:game_template/src/audio_level_selection/audio_level_selection_screen.dart';
 import 'package:game_template/src/game_selection/game_selection.dart';
@@ -168,6 +169,22 @@ class MyApp extends StatelessWidget {
                         key: ValueKey('level'),
                         child: AudioMemory(
                             key: const Key('play session'), lvl: level.number),
+                        color: context.watch<Palette>().backgroundPlaySession,
+                      );
+                    },
+                  ),
+                   GoRoute(
+                    path: 'sequence/:level',
+                    pageBuilder: (context, state) {
+                      final levelNumber =
+                          int.parse(state.pathParameters['level']!);
+                      final level = gameLevels
+                          .singleWhere((e) => e.number == levelNumber);
+                      return buildMyTransition<void>(
+                        key: ValueKey('level'),
+                        child: SequenceMemory(
+                            // key: const Key('play session'), lvl: level.number
+                            ),
                         color: context.watch<Palette>().backgroundPlaySession,
                       );
                     },

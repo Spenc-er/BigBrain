@@ -1,7 +1,3 @@
-// Copyright 2022, the Flutter project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -15,14 +11,14 @@ import '../style/responsive_screen.dart';
 import 'levels.dart';
 
 class LevelSelectionScreen extends StatelessWidget {
-  const LevelSelectionScreen({super.key});
+  const LevelSelectionScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final playerProgress = context.watch<PlayerProgress>();
 
-    Future<void> saveDifficulty(level) async {
+    Future<void> saveDifficulty(String level) async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('difficulty', level);
     }
@@ -36,40 +32,84 @@ class LevelSelectionScreen extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: Center(
                 child: Text(
-                  'Select level',
-                  style:
-                      TextStyle(fontFamily: 'Permanent Marker', fontSize: 30),
+                  'SELECT LEVEL',
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 20),
             Expanded(
-              child: ListView(
-                children: [
-                  for (final level in gameLevels)
-                    ListTile(
-                      enabled: playerProgress.highestLevelReached >=
-                          level.number - 1,
-                      onTap: () {
-                        final audioController = context.read<AudioController>();
-                        audioController.playSfx(SfxType.buttonTap);
-                        saveDifficulty(level.level);
-                        GoRouter.of(context)
-                            .go('/play/session/${level.number}');
-                      },
-                      leading: Text(level.number.toString()),
-                      title: Text(level.level),
-                    )
-                ],
+              child: ListView.builder(
+                itemCount: gameLevels.length,
+                itemBuilder: (context, index) {
+                  final level = gameLevels[index];
+                  final isLevelEnabled =
+                      playerProgress.highestLevelReached >= level.number - 1;
+
+                  return AnimatedOpacity(
+                    duration: Duration(milliseconds: 300),
+                    opacity: isLevelEnabled ? 1.0 : 0.5,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (isLevelEnabled) {
+                            final audioController =
+                                context.read<AudioController>();
+                            audioController.playSfx(SfxType.buttonTap);
+                            saveDifficulty(level.level);
+                            GoRouter.of(context)
+                                .go('/play/session/${level.number}');
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: isLevelEnabled
+                              ? palette.buttonColor
+                              : palette.buttonColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          elevation: 8,
+                        ),
+                        child: ListTile(
+                          enabled: playerProgress.highestLevelReached >=
+                              level.number - 1,
+                          title: Center(
+                            child: Text(
+                              level.level,
+                              style: TextStyle(
+                                color: palette.trueWhite,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ],
         ),
         rectangularMenuArea: FilledButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
           onPressed: () {
             GoRouter.of(context).go('/');
           },
-          child: const Text('Back'),
+          child: Text(
+            'BACK',
+            style: TextStyle(
+              fontSize: 20,
+              color: palette.backgroundLevelSelection,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ),
     );
