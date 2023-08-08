@@ -5,6 +5,7 @@ import 'package:game_template/helpers/phone_properties.dart';
 import 'package:game_template/games/sequence_memory/controller/sequence_memory_controller.dart';
 import 'package:game_template/widgets/button/elevated_button.dart';
 import 'package:game_template/widgets/text/less_futured_text.dart';
+import 'package:go_router/go_router.dart';
 
 class WrongAnswer extends StatefulWidget {
   WrongAnswer({Key? key}) : super(key: key);
@@ -15,31 +16,43 @@ class WrongAnswer extends StatefulWidget {
 
 class _WrongAnswerState extends State<WrongAnswer> {
   late SequenceMemoryController controller;
-
+  late BuildContext context;
   @override
   Widget build(BuildContext context) {
+    context = context;
     _initState();
     return Scaffold(
       backgroundColor: MyColors.myBlue,
-      body: Column(
-        children: [
-          Flexible(
-            flex: 1,
-            child: _backButton(),
-          ),
-          Flexible(
-            flex: 9,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FittedBox(child: _levelText()),
-                SizedBox(height: 20),
-                _retryButton(context),
-                SizedBox(height: 40),
-              ],
+      body: Center(
+        child: Column(
+          children: [
+            Flexible(
+              flex: 9,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FittedBox(child: _levelText()),
+                  SizedBox(height: 20),
+                  _retryButton(context),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: Size(Phone.width(context) / 3.5, 20),
+                        backgroundColor: Colors.white,
+                      ),
+                      child: Text(
+                        "HOME",
+                        style: TextStyle(
+                          color: Color.fromRGBO(52, 168, 83, 1),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onPressed: () => {GoRouter.of(context).go('/')}),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -50,14 +63,18 @@ class _WrongAnswerState extends State<WrongAnswer> {
 
   Widget _retryButton(BuildContext context) {
     return CustomElevatedButton(
-      onPressed: () => _retry(),
-      child: LessText.lessFuturedText(
-        text: 'Retry',
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
+      onPressed: () => {
+        _retry(),
+      },
+      child: Text(
+        "RETRY",
+        style: TextStyle(
+          color: Color.fromRGBO(52, 168, 83, 1),
+          fontWeight: FontWeight.bold,
+        ),
       ),
-      primary: MyColors.mySemiDarkYellow,
-      borderRadius: 10,
+      primary: Colors.white,
+      borderRadius: 20,
       borderSideWidth: 1.5,
       borderSideColor: Colors.white,
       size: Size(Phone.width(context) / 3.5, 20),
@@ -65,7 +82,8 @@ class _WrongAnswerState extends State<WrongAnswer> {
   }
 
   _retry() {
-    controller.selectInfoPage();
+    controller.sequenceMemoryValueController.hardReset();
+    controller.selectGamePage();
   }
 
   Widget _levelText() {

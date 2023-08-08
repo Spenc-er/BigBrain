@@ -22,10 +22,10 @@ class _SequenceMemoryState extends State<SequenceMemory> {
     sequenceMemoryValueController = Get.put(SequenceMemoryValueController());
   }
 
-
   @override
   void dispose() {
     sequenceMemoryValueController.hardReset();
+    Get.deleteAll();
     super.dispose();
   }
 

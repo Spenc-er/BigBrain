@@ -4,8 +4,7 @@ import 'package:game_template/games/sequence_memory/controller/helpers/sequencer
 import 'package:game_template/games/sequence_memory/controller/sequence_memory_controller.dart';
 
 class SequenceMemoryValueController extends GetxController {
-
-  SequenceMemoryValueController(){
+  SequenceMemoryValueController() {
     c = Get.find();
   }
 
@@ -44,19 +43,31 @@ class SequenceMemoryValueController extends GetxController {
     }
   }
 
+  selecTile(int index) {
+    _SelectTile(index);
+  }
+
   _correctStep() async {
     _userClickCounter++;
     if (_userClickCounter == levelCount) {
       _levelDoneSignal();
       reset();
       incrementLevel();
-      play();
+      await Future.delayed(Duration(milliseconds: 200), () => play());
     }
   }
 
   _levelDoneSignal() async {
-    await Future.delayed(Duration(milliseconds: 200), () => c.selectCorrectAnswerBackground());
-    await Future.delayed(Duration(milliseconds: 200), () => c.resetBackground());
+    await Future.delayed(
+        Duration(milliseconds: 110), () => c.selectCorrectAnswerBackground());
+    await Future.delayed(
+        Duration(milliseconds: 200), () => c.resetBackground());
+  }
+
+  _SelectTile(int index) async {
+    c.selectWhiteCard(index);
+    await Future.delayed(
+        Duration(milliseconds: 200), () => c.selectTransparentCard(index));
   }
 
   _wrongAnswer() {

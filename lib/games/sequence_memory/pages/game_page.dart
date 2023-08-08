@@ -20,31 +20,33 @@ class _GamePageState extends State<GamePage>
     return Obx(
       () => Scaffold(
         backgroundColor: controller.backGroundColor.value,
-        body: AnimatedContainer(
-          duration: Duration(milliseconds: 200),
-          color: controller.backGroundColor.value,
-          child: Column(
-            children: [
-              Flexible(
-                flex: 1,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: _levelText(),
-                ),
-              ),
-              Flexible(
-                flex: 10,
-                child: Container(
-                  padding: EdgeInsets.all(15),
-                  child: GridView.count(
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20,
-                    crossAxisCount: 3,
-                    children: widgetList,
+        body: SafeArea(
+          child: AnimatedContainer(
+            duration: Duration(milliseconds: 200),
+            color: controller.backGroundColor.value,
+            child: Column(
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: _levelText(),
                   ),
                 ),
-              ),
-            ],
+                Flexible(
+                  flex: 10,
+                  child: Container(
+                    padding: EdgeInsets.all(15),
+                    child: GridView.count(
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20,
+                      crossAxisCount: 3,
+                      children: widgetList,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -86,7 +88,9 @@ class _GamePageState extends State<GamePage>
 
   _cardClickController(int index) {
     if (controller.clickable) {
+       controller.sequenceMemoryValueController.selecTile(index);
       controller.sequenceMemoryValueController.userStepCheck(index);
     }
   }
+ 
 }

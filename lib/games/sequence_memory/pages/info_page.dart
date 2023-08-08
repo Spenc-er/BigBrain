@@ -26,10 +26,6 @@ class _InfoPageState extends State<InfoPage> {
         child: Column(
           children: [
             Flexible(
-              flex: 1,
-              child: _backButton(),
-            ),
-            Flexible(
               flex: 9,
               child: Container(
                 padding: EdgeInsets.only(bottom: 50, left: 10, right: 10),
@@ -41,7 +37,7 @@ class _InfoPageState extends State<InfoPage> {
                       child: _gameNameText(),
                     ),
                     SizedBox(height: 25),
-                    FittedBox(child: _infoText()),
+                    _infoText(),
                     SizedBox(height: 25),
                     _startButton(),
                   ],
@@ -60,10 +56,15 @@ class _InfoPageState extends State<InfoPage> {
         fontSize: 50,
       );
 
-  Text _infoText() => LessText.lessFuturedText(
-        text: 'Memorize the pattern.',
-        color: Colors.white,
-        fontSize: 20,
+  Text _infoText() => Text(
+        "Memorize and repeat the sequence order.",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontFamily: 'GemunuLibre',
+          color: Colors.white,
+          fontSize: 25,
+        ),
+        textAlign: TextAlign.center,
       );
 
   Widget _backButton() => Container(
@@ -80,13 +81,15 @@ class _InfoPageState extends State<InfoPage> {
   ElevatedButton _startButton() {
     controller.sequenceMemoryValueController.hardReset();
     return ElevatedButton(
-      style: ElevatedButton.styleFrom(primary: MyColors.myYellow),
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
       onPressed: () => controller.selectGamePage(),
-      child: LessText.lessFuturedText(
-        text: 'Start',
-        color: Colors.white,
-        fontWeight: FontWeight.normal,
-      ).paddingSymmetric(horizontal: 10),
+      child: Text(
+        "START",
+        style: TextStyle(
+          color: Color.fromRGBO(52, 168, 83, 1),
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 }
