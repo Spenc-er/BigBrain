@@ -12,6 +12,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:game_template/games/audio_memory/audio_memory_page.dart';
+import 'package:game_template/games/flash_memory/sequence_memory_page.dart';
 import 'package:game_template/games/numbers_memory/controllers/share_pref.dart';
 import 'package:game_template/games/numbers_memory/numbers_memory_page.dart';
 import 'package:game_template/games/sequence_memory/sequence_memory_page.dart';
@@ -183,6 +184,22 @@ class MyApp extends StatelessWidget {
                       return buildMyTransition<void>(
                         key: ValueKey('level'),
                         child: SequenceMemory(
+                            // key: const Key('play session'), lvl: level.number
+                            ),
+                        color: context.watch<Palette>().backgroundPlaySession,
+                      );
+                    },
+                  ),
+                    GoRoute(
+                    path: 'flash/:level',
+                    pageBuilder: (context, state) {
+                      final levelNumber =
+                          int.parse(state.pathParameters['level']!);
+                      final level = gameLevels
+                          .singleWhere((e) => e.number == levelNumber);
+                      return buildMyTransition<void>(
+                        key: ValueKey('level'),
+                        child: FlashMemory(
                             // key: const Key('play session'), lvl: level.number
                             ),
                         color: context.watch<Palette>().backgroundPlaySession,

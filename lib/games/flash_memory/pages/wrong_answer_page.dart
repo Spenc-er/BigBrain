@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:game_template/helpers/colors.dart';
 import 'package:game_template/helpers/phone_properties.dart';
-import 'package:game_template/games/sequence_memory/controller/sequence_memory_controller.dart';
+import 'package:game_template/games/flash_memory/controller/sequence_memory_controller.dart';
 import 'package:game_template/widgets/button/elevated_button.dart';
 import 'package:game_template/widgets/text/less_futured_text.dart';
 import 'package:go_router/go_router.dart';
@@ -15,7 +15,7 @@ class WrongAnswer extends StatefulWidget {
 }
 
 class _WrongAnswerState extends State<WrongAnswer> {
-  late SequenceMemoryController controller;
+  late FlashMemoryController controller;
   late BuildContext context;
   @override
   Widget build(BuildContext context) {
@@ -82,13 +82,13 @@ class _WrongAnswerState extends State<WrongAnswer> {
   }
 
   _retry() {
-    controller.sequenceMemoryValueController.hardReset();
+    controller.flashMemoryValueController.hardReset();
     controller.selectGamePage();
   }
 
   Widget _levelText() {
     var levelCount =
-        controller.sequenceMemoryValueController.levelCount.toString();
+        controller.flashMemoryValueController.levelCount.toString();
 
     return LessText.lessFuturedText(
       text: 'Level $levelCount',
