@@ -11,7 +11,6 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../src/player_progress/player_progress.dart';
-import '../../audio_memory_page.dart';
 import '/helpers/colors.dart';
 import '/helpers/phone_properties.dart';
 import '/widgets/text/less_futured_text.dart';

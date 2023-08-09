@@ -72,19 +72,20 @@ class _GameSelectionScreenState extends State<GameSelectionScreen> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
+                                          fontSize: 20
                                 ),
                               ),
                             ),
                           ),
-                          width: 160.0,
+                          width: 260.0,
                         ),
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.only(bottom: 40),
                       child: ElevatedButton(
-                        onPressed: (){
-                            audioController.playSfx(SfxType.buttonTap);
+                        onPressed: () {
+                          audioController.playSfx(SfxType.buttonTap);
                           GoRouter.of(context).go('/play/audioLevel');
                         },
                         style: ElevatedButton.styleFrom(
@@ -114,20 +115,20 @@ class _GameSelectionScreenState extends State<GameSelectionScreen> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
+                                          fontSize: 20
                                 ),
                               ),
                             ),
                           ),
-                          width: 160.0,
+                          width: 260.0,
                         ),
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.only(bottom: 40),
                       child: ElevatedButton(
-                        onPressed: (){
-                          GoRouter.of(context)
-                            .go('/play/sequence/1');
+                        onPressed: () {
+                          GoRouter.of(context).go('/play/sequence/1');
                         },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.zero,
@@ -156,20 +157,20 @@ class _GameSelectionScreenState extends State<GameSelectionScreen> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
+                                          fontSize: 20
                                 ),
                               ),
                             ),
                           ),
-                          width: 160.0,
+                          width: 260.0,
                         ),
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.only(bottom: 40),
                       child: ElevatedButton(
-                        onPressed:(){
-                          GoRouter.of(context)
-                            .go('/play/flash/1');
+                        onPressed: () {
+                          GoRouter.of(context).go('/play/flash/1');
                         },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.zero,
@@ -196,13 +197,13 @@ class _GameSelectionScreenState extends State<GameSelectionScreen> {
                               child: Text(
                                 'Flash Memory',
                                 style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 20),
                               ),
                             ),
                           ),
-                          width: 160.0,
+                          width: 260.0,
                         ),
                       ),
                     ),
@@ -238,13 +239,13 @@ class _GameSelectionScreenState extends State<GameSelectionScreen> {
                                   child: Text(
                                     'Dual N Back',
                                     style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        fontSize: 20),
                                   ),
                                 ),
                               ),
-                              width: 160.0,
+                              width: 260.0,
                             ),
                           ),
                         ),

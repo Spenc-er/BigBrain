@@ -99,10 +99,19 @@ class SettingsScreen extends StatelessWidget {
           ],
         ),
         rectangularMenuArea: FilledButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
           onPressed: () {
-            GoRouter.of(context).pop();
+            GoRouter.of(context).go('/');
           },
-          child: const Text('Back'),
+          child: Text(
+            'BACK',
+            style: TextStyle(
+              fontSize: 20,
+              color: palette.backgroundSettings,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ),
     );
