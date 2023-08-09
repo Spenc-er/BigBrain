@@ -16,6 +16,7 @@ class FlashMemoryValueController extends GetxController {
   List<int> queue = [];
   List<int> userClickRow = [];
   Map<int, int> valueCounts = {};
+  List<int> keysWithOddValues = [];
   late FlashMemoryController c;
 
   incrementLevel() => _levelCounter++;
@@ -27,7 +28,10 @@ class FlashMemoryValueController extends GetxController {
 
   hardReset() {
     queue.clear();
+    valueCounts.clear();
+    keysWithOddValues.clear();
     _levelCounter = 1;
+    c.clickable.value = false;
     reset();
   }
 
@@ -58,6 +62,10 @@ class FlashMemoryValueController extends GetxController {
     }
   }
 
+  wrongAns() {
+    _wrongAnswer();
+  }
+
   selectTile(int index) {
     if (c.cardColors[index].value == MyColors.transparentBlackForCard)
       c.selectWhiteCard(index);
@@ -81,6 +89,10 @@ class FlashMemoryValueController extends GetxController {
       incrementLevel();
       await Future.delayed(Duration(milliseconds: 100), () => play());
     } else {
+      keysWithOddValues =
+          valueCounts.keys.where((key) => valueCounts[key]! % 2 != 0).toList();
+      keysWithOddValues.sort();
+
       c.clickable.value = true;
       return;
       // _wrongAnswer();
@@ -101,7 +113,30 @@ class FlashMemoryValueController extends GetxController {
   }
 
   _wrongAnswer() {
-    reset();
-    c.selectWrongAnswerPage();
+    print(keysWithOddValues);
+    List<int> selectExtra = [];
+    List<int> unselectCorrect = [];
+
+    for (int num in c.getAnswer()) {
+      if (!keysWithOddValues.contains(num)) {
+        selectExtra.add(num);
+      }
+    }
+
+    for (int num in keysWithOddValues) {
+      if (!c.getAnswer().contains(num)) {
+        unselectCorrect.add(num);
+      }
+    }
+    for (var i in selectExtra) {
+      c.selectExtraAnswer(i);
+    }
+    for (var i in unselectCorrect) {
+      c.unselectCorrectAnswer(i);
+    }
+    if (selectExtra.length < 1 && unselectCorrect.length < 1)
+      c.selectCorrectAnswerPage();
+    else
+      c.selectWrongAnswerPage();
   }
 }

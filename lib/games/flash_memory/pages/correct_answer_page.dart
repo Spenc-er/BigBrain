@@ -8,14 +8,14 @@ import 'package:game_template/widgets/text/less_futured_text.dart';
 import 'package:go_router/go_router.dart';
 import 'package:game_template/games/flash_memory/values/const_values.dart';
 
-class WrongAnswer extends StatefulWidget {
-  WrongAnswer({Key? key}) : super(key: key);
+class CorrectAnswer extends StatefulWidget {
+  CorrectAnswer({Key? key}) : super(key: key);
 
   @override
-  State<WrongAnswer> createState() => _WrongAnswerState();
+  State<CorrectAnswer> createState() => CorrectAnswerState();
 }
 
-class _WrongAnswerState extends State<WrongAnswer> {
+class CorrectAnswerState extends State<CorrectAnswer> {
   late FlashMemoryController controller;
   late BuildContext context;
   @override
@@ -122,7 +122,7 @@ class _WrongAnswerState extends State<WrongAnswer> {
 
   Widget _levelText() {
     return LessText.lessFuturedText(
-      text: 'TRY AGAIN',
+      text: 'SUCCESS',
       fontSize: 40,
       color: Color(0xffE4FF78),
     );

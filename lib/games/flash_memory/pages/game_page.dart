@@ -60,7 +60,8 @@ class _GamePageState extends State<GamePage>
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        onPressed: () => {controller.selectWrongAnswerPage()}),
+                        onPressed: () =>
+                            {controller.flashMemoryValueController.wrongAns()}),
                   ),
               ],
             ),
@@ -77,6 +78,7 @@ class _GamePageState extends State<GamePage>
       color: Colors.white,
     );
   }
+
 
   late FlashMemoryController controller;
   late List<Widget> widgetList = [];
