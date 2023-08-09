@@ -57,7 +57,7 @@ class _InfoPageState extends State<InfoPage> {
       );
 
   Text _infoText() => Text(
-        "Memorize and repeat the sequence order.",
+        "There are 5 flash slide. The flash is cancelled when it lights up at the same spot. Answer with the remaining flash position(s).  ",
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontFamily: 'GemunuLibre',

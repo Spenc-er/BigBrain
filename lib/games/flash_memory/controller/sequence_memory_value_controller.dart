@@ -41,7 +41,6 @@ class FlashMemoryValueController extends GetxController {
     firstStep();
     getAnswer(queue);
     queue.clear();
-    print(valueCounts);
   }
 
   getAnswer(List<int> queue) {
@@ -92,7 +91,7 @@ class FlashMemoryValueController extends GetxController {
       keysWithOddValues =
           valueCounts.keys.where((key) => valueCounts[key]! % 2 != 0).toList();
       keysWithOddValues.sort();
-
+      print(keysWithOddValues);
       c.clickable.value = true;
       return;
       // _wrongAnswer();
@@ -106,13 +105,8 @@ class FlashMemoryValueController extends GetxController {
         Duration(milliseconds: 200), () => c.resetBackground());
   }
 
-  _SelectTile(int index) async {
-    c.selectWhiteCard(index);
-    await Future.delayed(
-        Duration(milliseconds: 200), () => c.selectTransparentCard(index));
-  }
 
-  _wrongAnswer() {
+  _wrongAnswer() async {
     print(keysWithOddValues);
     List<int> selectExtra = [];
     List<int> unselectCorrect = [];
@@ -134,9 +128,12 @@ class FlashMemoryValueController extends GetxController {
     for (var i in unselectCorrect) {
       c.unselectCorrectAnswer(i);
     }
-    if (selectExtra.length < 1 && unselectCorrect.length < 1)
+    if (selectExtra.length < 1 && unselectCorrect.length < 1) {
+      await Future.delayed(Duration(milliseconds: 110), () => c.levelDone());
+      await Future.delayed(
+          Duration(milliseconds: 200), () => c.resetBackground());
       c.selectCorrectAnswerPage();
-    else
+    } else
       c.selectWrongAnswerPage();
   }
 }

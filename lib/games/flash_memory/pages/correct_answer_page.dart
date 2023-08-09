@@ -18,6 +18,7 @@ class CorrectAnswer extends StatefulWidget {
 class CorrectAnswerState extends State<CorrectAnswer> {
   late FlashMemoryController controller;
   late BuildContext context;
+
   @override
   Widget build(BuildContext context) {
     context = context;
@@ -122,7 +123,7 @@ class CorrectAnswerState extends State<CorrectAnswer> {
 
   Widget _levelText() {
     return LessText.lessFuturedText(
-      text: 'SUCCESS',
+      text: 'WELL DONE',
       fontSize: 40,
       color: Color(0xffE4FF78),
     );

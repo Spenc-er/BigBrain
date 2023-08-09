@@ -28,12 +28,7 @@ class FlashMemoryController extends GetxController {
     MyColors.transparentBlackForCard.obs,
   ];
 
-  List<Widget> pages = [
-    InfoPage(),
-    GamePage(),
-    WrongAnswer(),
-    CorrectAnswer()
-  ];
+  List<Widget> pages = [InfoPage(), GamePage(), WrongAnswer(), CorrectAnswer()];
   showButton() => clickable.value;
 
   selectInfoPage() => page.value = 0;
@@ -53,6 +48,7 @@ class FlashMemoryController extends GetxController {
   resetCard() => List.generate(9, (index) => selectTransparentCard(index));
 
   selectCorrectAnswerBackground() => backGroundColor.value = MyColors.myBlue1;
+  levelDone() => backGroundColor.value = MyColors.myLightBlue;
   resetBackground() => backGroundColor.value = MyColors.myBlue;
 
   selectWhiteCard(int index) => cardColors[index].value = Colors.white;
