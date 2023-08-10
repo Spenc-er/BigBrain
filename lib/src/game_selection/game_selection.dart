@@ -70,10 +70,9 @@ class _GameSelectionScreenState extends State<GameSelectionScreen> {
                               child: Text(
                                 'Number Memory',
                                 style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                          fontSize: 20
-                                ),
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 20),
                               ),
                             ),
                           ),
@@ -113,10 +112,9 @@ class _GameSelectionScreenState extends State<GameSelectionScreen> {
                               child: Text(
                                 'Audio Memory',
                                 style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                          fontSize: 20
-                                ),
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 20),
                               ),
                             ),
                           ),
@@ -155,10 +153,9 @@ class _GameSelectionScreenState extends State<GameSelectionScreen> {
                               child: Text(
                                 'Sequence Memory',
                                 style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                          fontSize: 20
-                                ),
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 20),
                               ),
                             ),
                           ),
@@ -213,7 +210,9 @@ class _GameSelectionScreenState extends State<GameSelectionScreen> {
                         Container(
                           margin: EdgeInsets.only(bottom: 40),
                           child: ElevatedButton(
-                            onPressed: null,
+                            onPressed: () {
+                              GoRouter.of(context).go('/play/dnb/1');
+                            },
                             style: ElevatedButton.styleFrom(
                               padding: EdgeInsets.zero,
                               shape: RoundedRectangleBorder(
