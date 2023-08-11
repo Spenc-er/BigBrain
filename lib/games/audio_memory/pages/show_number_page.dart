@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:game_template/games/audio_memory/controllers/audio_player.dart';
 import 'package:game_template/games/audio_memory/controllers/numbers_memory_controller.dart';
 import 'package:get/get.dart';
-import 'package:rive/rive.dart';
 import '/helpers/colors.dart';
 import '/helpers/phone_properties.dart';
 import '/helpers/timer.dart';
@@ -89,7 +88,6 @@ class _ShowAudioNumberState extends State<ShowAudioNumber> {
         animation: true,
         animationDuration: c.valueController.levelSecond,
         percent: 1,
-        linearStrokeCap: LinearStrokeCap.butt,
         backgroundColor: Colors.white,
         progressColor: Colors.grey,
       ),

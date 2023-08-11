@@ -67,17 +67,6 @@ class _InfoPageState extends State<InfoPage> {
         textAlign: TextAlign.center,
       );
 
-  Widget _backButton() => Container(
-        alignment: Alignment.centerLeft,
-        child: IconButton(
-          onPressed: () => Get.back(),
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-        ),
-      );
-
   ElevatedButton _startButton() {
     controller.flashMemoryValueController.hardReset();
     return ElevatedButton(

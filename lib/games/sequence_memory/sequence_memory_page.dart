@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:game_template/helpers/phone_properties.dart';
+
 import 'package:game_template/games/sequence_memory/controller/sequence_memory_controller.dart';
 import 'package:game_template/games/sequence_memory/controller/sequence_memory_value_controller.dart';
 

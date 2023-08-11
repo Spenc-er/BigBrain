@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:game_template/games/flash_memory/pages/correct_answer_page.dart';
 import 'package:get/get.dart';

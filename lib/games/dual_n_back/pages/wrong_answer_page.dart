@@ -4,7 +4,6 @@ import 'package:game_template/helpers/colors.dart';
 import 'package:game_template/helpers/phone_properties.dart';
 import 'package:game_template/games/dual_n_back/controller/sequence_memory_controller.dart';
 import 'package:game_template/widgets/button/elevated_button.dart';
-import 'package:game_template/widgets/text/less_futured_text.dart';
 import 'package:go_router/go_router.dart';
 
 class WrongAnswer extends StatefulWidget {
@@ -113,16 +112,4 @@ class _WrongAnswerState extends State<WrongAnswer> {
     );
   }
 
-  Widget _backButton() {
-    return Container(
-      alignment: Alignment.centerLeft,
-      child: IconButton(
-        onPressed: () => Get.back(),
-        icon: Icon(
-          Icons.arrow_back,
-          color: Colors.white,
-        ),
-      ),
-    );
-  }
 }

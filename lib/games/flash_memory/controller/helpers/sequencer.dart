@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:game_template/helpers/random_number_generator.dart';
 import 'package:game_template/games/flash_memory/controller/sequence_memory_value_controller.dart';
 import 'dart:math';
 

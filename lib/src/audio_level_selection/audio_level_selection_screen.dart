@@ -67,7 +67,7 @@ class AudioLevelSelection extends StatelessWidget {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: isLevelEnabled
+                          backgroundColor: isLevelEnabled
                               ? palette.buttonColor
                               : palette.buttonColor,
                           shape: RoundedRectangleBorder(

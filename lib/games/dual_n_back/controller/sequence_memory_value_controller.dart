@@ -10,7 +10,6 @@ class DualNBackValueController extends GetxController {
 
   int _levelCounter = 15;
   int get levelCount => _levelCounter;
-  int _userClickCounter = 0;
 
   List<int> queue = [];
   List<int> userClickRow = [];
@@ -21,7 +20,6 @@ class DualNBackValueController extends GetxController {
 
   reset() {
     userClickRow.clear();
-    _userClickCounter = 0;
   }
 
   hardReset() {
@@ -45,23 +43,6 @@ class DualNBackValueController extends GetxController {
 
   selecTile(int index) {
     _SelectTile(index);
-  }
-
-  _correctStep() async {
-    _userClickCounter++;
-    if (_userClickCounter == levelCount) {
-      _levelDoneSignal();
-      reset();
-      // incrementLevel();
-      await Future.delayed(Duration(milliseconds: 200), () => play());
-    }
-  }
-
-  _levelDoneSignal() async {
-    await Future.delayed(
-        Duration(milliseconds: 110), () => c.selectCorrectAnswerBackground());
-    await Future.delayed(
-        Duration(milliseconds: 200), () => c.resetBackground());
   }
 
   _SelectTile(int index) async {

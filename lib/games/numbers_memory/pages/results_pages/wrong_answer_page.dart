@@ -165,21 +165,9 @@ class _WrongAnswerState extends State<WrongAnswer> {
     );
   }
 
-  Widget _backButton() => Container(
-        width: Phone.width(context),
-        alignment: Alignment.centerRight,
-        child: IconButton(
-          onPressed: () => {GoRouter.of(context).go('/')},
-          icon: Icon(
-            Icons.close,
-            color: Colors.white,
-          ),
-        ),
-      );
-
   Text _numberText() => LessText.lessFuturedText(
         text: 'Number',
-        color:Colors.white,
+        color: Colors.white,
       );
 
   Text _showNumberText(String number) => LessText.lessFuturedText(
@@ -191,7 +179,7 @@ class _WrongAnswerState extends State<WrongAnswer> {
 
   Text _yourAnswerText() => LessText.lessFuturedText(
         text: 'Your Answer',
-        color:Colors.white,
+        color: Colors.white,
       );
 
   Row _showYourAnswerText(String answer, String userAnswer) => WrongDetecetor(

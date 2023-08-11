@@ -2,14 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter/src/material/tooltip.dart';
+
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../numbers_memory/controllers/store_controller.dart';
-
 
 class Survey extends StatefulWidget {
   const Survey({Key? key}) : super(key: key);
@@ -160,8 +159,8 @@ class _SurveyState extends State<Survey> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         buildOptionRow(Icons.mood_bad, 1, Colors.red),
-                        buildOptionRow(
-                            Icons.sentiment_very_dissatisfied, 2, Colors.orange),
+                        buildOptionRow(Icons.sentiment_very_dissatisfied, 2,
+                            Colors.orange),
                         buildOptionRow(Icons.sentiment_neutral, 3,
                             Color.fromARGB(255, 255, 238, 4)),
                         buildOptionRow(Icons.sentiment_satisfied_alt_sharp, 4,
@@ -375,7 +374,7 @@ class _SurveyState extends State<Survey> {
   }
 
   Widget _backButton() => Container(
-    width:40,
+        width: 40,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.white, width: 2),
           color: Color.fromARGB(255, 235, 170, 255),

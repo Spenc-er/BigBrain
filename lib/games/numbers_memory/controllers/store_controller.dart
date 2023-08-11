@@ -21,6 +21,7 @@ class StoreController extends GetxController {
               "Survey has been created.",
               snackPosition: SnackPosition.BOTTOM,
             ))
+        // ignore: body_might_complete_normally_catch_error
         .catchError((error) {
       Get.snackbar(
         "Error",

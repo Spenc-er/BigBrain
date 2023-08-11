@@ -156,18 +156,6 @@ class _WrongAnswerAudioState extends State<WrongAnswerAudio> {
     );
   }
 
-  Widget _backButton() => Container(
-        width: Phone.width(context),
-        alignment: Alignment.centerRight,
-        child: IconButton(
-          onPressed: () => {GoRouter.of(context).go('/')},
-          icon: Icon(
-            Icons.close,
-            color: Colors.white,
-          ),
-        ),
-      );
-
   Text _numberText() => LessText.lessFuturedText(
         text: 'Number',
         color: Colors.white,

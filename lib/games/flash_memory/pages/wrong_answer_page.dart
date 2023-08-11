@@ -127,17 +127,4 @@ class _WrongAnswerState extends State<WrongAnswer> {
       color: Color(0xffE4FF78),
     );
   }
-
-  Widget _backButton() {
-    return Container(
-      alignment: Alignment.centerLeft,
-      child: IconButton(
-        onPressed: () => Get.back(),
-        icon: Icon(
-          Icons.arrow_back,
-          color: Colors.white,
-        ),
-      ),
-    );
-  }
 }

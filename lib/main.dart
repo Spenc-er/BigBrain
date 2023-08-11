@@ -17,7 +17,7 @@ import 'package:game_template/games/flash_memory/sequence_memory_page.dart';
 import 'package:game_template/games/numbers_memory/controllers/share_pref.dart';
 import 'package:game_template/games/numbers_memory/numbers_memory_page.dart';
 import 'package:game_template/games/sequence_memory/sequence_memory_page.dart';
-import 'package:game_template/games/numbers_memory/pages/survey.dart';
+
 import 'package:game_template/src/audio_level_selection/audio_level_selection_screen.dart';
 import 'package:game_template/src/game_selection/game_selection.dart';
 import 'package:game_template/src/profile/profile.dart';
@@ -178,10 +178,10 @@ class MyApp extends StatelessWidget {
                    GoRoute(
                     path: 'sequence/:level',
                     pageBuilder: (context, state) {
-                      final levelNumber =
-                          int.parse(state.pathParameters['level']!);
-                      final level = gameLevels
-                          .singleWhere((e) => e.number == levelNumber);
+                      // final levelNumber =
+                      //     int.parse(state.pathParameters['level']!);
+                      // final level = gameLevels
+                      //     .singleWhere((e) => e.number == levelNumber);
                       return buildMyTransition<void>(
                         key: ValueKey('level'),
                         child: SequenceMemory(
@@ -194,10 +194,10 @@ class MyApp extends StatelessWidget {
                     GoRoute(
                     path: 'flash/:level',
                     pageBuilder: (context, state) {
-                      final levelNumber =
-                          int.parse(state.pathParameters['level']!);
-                      final level = gameLevels
-                          .singleWhere((e) => e.number == levelNumber);
+                      // final levelNumber =
+                      //     int.parse(state.pathParameters['level']!);
+                      // final level = gameLevels
+                      //     .singleWhere((e) => e.number == levelNumber);
                       return buildMyTransition<void>(
                         key: ValueKey('level'),
                         child: FlashMemory(
@@ -341,6 +341,7 @@ class MyApp extends StatelessWidget {
 
           return MaterialApp.router(
             title: 'Flutter Demo',
+            debugShowCheckedModeBanner: false,
             theme: ThemeData.from(
               colorScheme: ColorScheme.fromSeed(
                 seedColor: palette.darkPen,

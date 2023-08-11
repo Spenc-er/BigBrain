@@ -79,7 +79,6 @@ class _ShowNumberState extends State<ShowNumber> {
         animation: true,
         animationDuration: c.valueController.levelSecond,
         percent: 1,
-        linearStrokeCap: LinearStrokeCap.butt,
         backgroundColor: Colors.white,
         progressColor: Colors.grey,
       ),

@@ -19,14 +19,4 @@ class Sequencer {
   }
 
   static int? previousNumber;
-
-  bool _isNumberCopy(int number) {
-    if (previousNumber != null) {
-      if (previousNumber == number) {
-        return true;
-      }
-    }
-    previousNumber = number;
-    return false;
-  }
 }
