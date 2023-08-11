@@ -18,6 +18,7 @@ class DualNBackController extends GetxController {
   var correct = 0.obs;
   var wrong = 0.obs;
   var matched = 0.obs;
+  var level = 2.obs;
   List<Rx<Color>> cardColors = [
     MyColors.transparentBlackForCard.obs,
     MyColors.transparentBlackForCard.obs,

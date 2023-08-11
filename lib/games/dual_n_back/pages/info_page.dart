@@ -14,7 +14,7 @@ class InfoPage extends StatefulWidget {
 
 class _InfoPageState extends State<InfoPage> {
   late DualNBackController controller;
-
+  double level = 2;
   @override
   Widget build(BuildContext context) {
     controller = Get.find();
@@ -35,6 +35,35 @@ class _InfoPageState extends State<InfoPage> {
                   children: [
                     FittedBox(
                       child: _gameNameText(),
+                    ),
+                    Text(
+                      'Select N: ${level.toStringAsFixed(0)}',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        valueIndicatorColor: Color.fromRGBO(53, 126, 73, 1),
+                        thumbColor: Color.fromRGBO(53, 126, 73, 1),
+                        activeTrackColor: Color.fromRGBO(53, 126, 73, 1),
+                        trackHeight: 20,
+                        showValueIndicator: ShowValueIndicator.always,
+                      ),
+                      child: Slider(
+                        value: level,
+                        min: 1,
+                        max: 5,
+                        onChanged: (newValue) {
+                          setState(() {
+                            level = newValue.round().toDouble();
+                            controller.level.value = level.round();
+                          });
+                        },
+                        label: level.round().toString(),
+                      ),
                     ),
                     SizedBox(height: 25),
                     _infoText(),

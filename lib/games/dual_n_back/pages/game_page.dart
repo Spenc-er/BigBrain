@@ -97,8 +97,7 @@ class _GamePageState extends State<GamePage>
 
   _levelText() {
     return LessText.lessFuturedText(
-      text:
-          'Level: ' + controller.dualNBackValueController.levelCount.toString(),
+      text: 'Dual ' + controller.level.value.toString() + " Back",
       color: Colors.white,
     );
   }
@@ -126,6 +125,4 @@ class _GamePageState extends State<GamePage>
       ),
     );
   }
-
-
 }
