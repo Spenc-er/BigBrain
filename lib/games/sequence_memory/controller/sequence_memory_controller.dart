@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_template/games/sequence_memory/pages/survey.dart';
 import 'package:get/get.dart';
 import 'package:game_template/helpers/colors.dart';
 import 'package:game_template/games/sequence_memory/controller/sequence_memory_value_controller.dart';
@@ -30,12 +31,13 @@ class SequenceMemoryController extends GetxController {
     InfoPage(),
     GamePage(),
     WrongAnswer(),
+    Survey()
   ];
 
   selectInfoPage() => page.value = 0;
   selectGamePage() => page.value = 1;
   selectWrongAnswerPage() => page.value = 2;
-
+  void surveyPage() => page.value = 3;
   selectCorrectAnswerBackground() =>
       backGroundColor.value = MyColors.myLightBlue;
   resetBackground() => backGroundColor.value = MyColors.myBlue;

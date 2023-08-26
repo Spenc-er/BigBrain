@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_template/games/sequence_memory/controller/sequence_memory_value_controller.dart';
 import 'package:get/get.dart';
 import 'package:game_template/helpers/colors.dart';
 import 'package:game_template/helpers/phone_properties.dart';
@@ -6,6 +7,8 @@ import 'package:game_template/games/sequence_memory/controller/sequence_memory_c
 import 'package:game_template/widgets/button/elevated_button.dart';
 import 'package:game_template/widgets/text/less_futured_text.dart';
 import 'package:go_router/go_router.dart';
+import 'package:game_template/games/numbers_memory/controllers/share_pref.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WrongAnswer extends StatefulWidget {
   WrongAnswer({Key? key}) : super(key: key);
@@ -17,6 +20,16 @@ class WrongAnswer extends StatefulWidget {
 class _WrongAnswerState extends State<WrongAnswer> {
   late SequenceMemoryController controller;
   late BuildContext context;
+  late SequenceMemoryValueController vC;
+
+  _initState() {
+    controller = Get.find();
+    vC = controller.sequenceMemoryValueController;
+    saveGameUsedTime();
+  }
+
+  var ishow = AppSharedPref.isProfileFilled();
+
   @override
   Widget build(BuildContext context) {
     context = context;
@@ -34,6 +47,45 @@ class _WrongAnswerState extends State<WrongAnswer> {
                   FittedBox(child: _levelText()),
                   SizedBox(height: 20),
                   _retryButton(context),
+                  SizedBox(height: 20),
+                  if (!ishow) ...[
+                    Tooltip(
+                      triggerMode: TooltipTriggerMode.tap,
+                      message: "Please fill in profile information.",
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            fixedSize: Size(Phone.width(context) / 2, 40),
+                            backgroundColor: Colors.grey,
+                          ),
+                          child: Text(
+                            "SUBMIT RESULT",
+                            style: TextStyle(
+                              color: Color.fromRGBO(52, 168, 83, 1),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          onPressed: null),
+                    ),
+                  ] else ...[
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size(Phone.width(context) / 2, 40),
+                          backgroundColor: ishow ? Colors.white : Colors.grey,
+                        ),
+                        child: Text(
+                          "SUBMIT RESULT",
+                          style: TextStyle(
+                            color: Color.fromRGBO(52, 168, 83, 1),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onPressed: () => ishow
+                            ? {
+                                Get.find<SequenceMemoryController>()
+                                    .surveyPage()
+                              }
+                            : null),
+                  ],
                   SizedBox(height: 20),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -57,8 +109,10 @@ class _WrongAnswerState extends State<WrongAnswer> {
     );
   }
 
-  _initState() {
-    controller = Get.find();
+  Future<void> saveGameUsedTime() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setString('game_lvl', vC.levelCount.toString());
   }
 
   Widget _retryButton(BuildContext context) {

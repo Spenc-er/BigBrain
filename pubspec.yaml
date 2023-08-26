@@ -58,9 +58,9 @@ flutter:
       fonts:
         - asset: assets/Permanent_Marker/PermanentMarker-Regular.ttf
 
-flutter_icons:
+flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/icon.png"
+  image_path: "assets/splash.png"
   adaptive_icon_background: "#FFFFFF"
-  adaptive_icon_foreground: "assets/icon-adaptive-foreground.png"
+

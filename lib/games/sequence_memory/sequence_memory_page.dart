@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:game_template/games/numbers_memory/controllers/share_pref.dart';
+import 'package:game_template/games/numbers_memory/controllers/store_controller.dart';
 import 'package:get/get.dart';
 
 import 'package:game_template/games/sequence_memory/controller/sequence_memory_controller.dart';
@@ -14,12 +16,15 @@ class SequenceMemory extends StatefulWidget {
 class _SequenceMemoryState extends State<SequenceMemory> {
   late SequenceMemoryController sequenceMemoryController;
   late SequenceMemoryValueController sequenceMemoryValueController;
-
+  late StoreController controller;
   @override
   void initState() {
-    super.initState();
     sequenceMemoryController = Get.put(SequenceMemoryController());
     sequenceMemoryValueController = Get.put(SequenceMemoryValueController());
+    controller = Get.put(StoreController());
+    AppSharedPref.initSessionManager();
+    WidgetsFlutterBinding.ensureInitialized();
+    super.initState();
   }
 
   @override
