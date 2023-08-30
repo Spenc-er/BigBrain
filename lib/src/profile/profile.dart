@@ -87,7 +87,7 @@ class _ProfileState extends State<Profile> {
             padding: EdgeInsets.all(16),
             child: Container(
               child: Card(
-                color:  Color.fromARGB(255, 235, 170, 255),
+                color: Color.fromARGB(255, 235, 170, 255),
                 elevation: 20,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -100,6 +100,7 @@ class _ProfileState extends State<Profile> {
                           fontSize: 30),
                     ),
                     Container(
+                      width: 353,
                       decoration: BoxDecoration(boxShadow: [
                         BoxShadow(
                           color: Colors.purple,
@@ -128,12 +129,14 @@ class _ProfileState extends State<Profile> {
                               fontWeight: FontWeight.bold,
                               fontSize: 17),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0)),
                             borderSide:
                                 BorderSide(width: 3, color: Colors.purple),
                           ), //
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0)),
                             borderSide:
                                 BorderSide(width: 3, color: Colors.purple),
                           ), // ,
@@ -200,12 +203,14 @@ class _ProfileState extends State<Profile> {
                               fontWeight: FontWeight.bold,
                               fontSize: 17),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0)),
                             borderSide:
                                 BorderSide(width: 3, color: Colors.purple),
                           ), //
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0)),
                             borderSide:
                                 BorderSide(width: 3, color: Colors.purple),
                           ), // ,
@@ -225,6 +230,7 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     Container(
+                      width: 353,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
@@ -260,12 +266,14 @@ class _ProfileState extends State<Profile> {
                               fontWeight: FontWeight.bold,
                               fontSize: 17),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0)),
                             borderSide:
                                 BorderSide(width: 3, color: Colors.purple),
                           ), //
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0)),
                             borderSide:
                                 BorderSide(width: 3, color: Colors.purple),
                           ), // ,
@@ -289,6 +297,7 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     Container(
+                      width: 353,
                       decoration: BoxDecoration(boxShadow: [
                         BoxShadow(
                           color: Colors.purple,
@@ -359,6 +368,7 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     Container(
+                      width: 353,
                       decoration: BoxDecoration(boxShadow: [
                         BoxShadow(
                           color: Colors.purple,
@@ -467,12 +477,14 @@ class _ProfileState extends State<Profile> {
                               fontWeight: FontWeight.bold,
                               fontSize: 17),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0)),
                             borderSide:
                                 BorderSide(width: 3, color: Colors.purple),
                           ), //
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0)),
                             borderSide:
                                 BorderSide(width: 3, color: Colors.purple),
                           ), // ,
@@ -492,6 +504,7 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     Container(
+                      width: 353,
                       decoration: BoxDecoration(boxShadow: [
                         BoxShadow(
                           color: Colors.purple,
@@ -521,12 +534,14 @@ class _ProfileState extends State<Profile> {
                               fontWeight: FontWeight.bold,
                               fontSize: 17),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0)),
                             borderSide:
                                 BorderSide(width: 3, color: Colors.purple),
                           ), //
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0)),
                             borderSide:
                                 BorderSide(width: 3, color: Colors.purple),
                           ), // ,
@@ -579,7 +594,8 @@ class _ProfileState extends State<Profile> {
                               prefixIcon: const Icon(Icons.search),
                               border: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: const Color(0xFF8C98A8).withOpacity(0.2),
+                                  color:
+                                      const Color(0xFF8C98A8).withOpacity(0.2),
                                 ),
                               ),
                             ),
@@ -593,7 +609,8 @@ class _ProfileState extends State<Profile> {
                       },
                       child: const Text('Select Your Country',
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold)),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
@@ -614,7 +631,8 @@ class _ProfileState extends State<Profile> {
                       },
                       child: const Text('Save Profile',
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold)),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
                     ),
                   ],
                 ),

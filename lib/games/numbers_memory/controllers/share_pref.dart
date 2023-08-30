@@ -15,16 +15,25 @@ class AppSharedPref {
 
   static bool isProfileFilled() {
     SharedPreferences _pref = Get.find();
-    if (_pref.getString("email") == "" ||
-        _pref.getString("gender") == "" ||
-        _pref.getString("age") == "" ||
-        _pref.getString("height") == "" ||
-        _pref.getString("weight") == "" ||
-        _pref.getString("education") == "" ||
-        _pref.getString("country") == "")
+    if (_pref.containsKey("email") ||
+        _pref.containsKey("gender") ||
+        _pref.containsKey("age") ||
+        _pref.containsKey("height") ||
+        _pref.containsKey("weight") ||
+        _pref.containsKey("education") ||
+        _pref.containsKey("country")) {
+      if (_pref.getString("email") == "" ||
+          _pref.getString("gender") == "" ||
+          _pref.getString("age") == "" ||
+          _pref.getString("height") == "" ||
+          _pref.getString("weight") == "" ||
+          _pref.getString("education") == "" ||
+          _pref.getString("country") == "")
+        return false;
+      else
+        return true;
+    } else
       return false;
-    else
-      return true;
   }
 
 //--------------------------------------//
