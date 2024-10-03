@@ -655,10 +655,11 @@ enum Gender {
 enum Education {
   e1('No Formal Education', '1'),
   e2('Primary School', '2'),
-  e3('Professional Certificate/Diploma', '3'),
-  e4("Bachelor's Degree", '4'),
-  e5("Master's Degree", '5'),
-  e6('Doctorate (PhD) or Higher', '6');
+  e3('Secondary School', '3'),
+  e4('Professional Certificate/Diploma', '4'),
+  e5("Bachelor's Degree", '5'),
+  e6("Master's Degree", '6'),
+  e7('Doctorate (PhD) or Higher', '7');
 
   const Education(this.label, this.education);
   final String label;
